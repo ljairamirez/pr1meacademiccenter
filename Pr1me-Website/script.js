@@ -253,11 +253,18 @@ function getBookingPayload(form) {
   return {
     guardianName: form.querySelector('[name="guardian-name"]')?.value.trim() || "",
     studentName: form.querySelector('[name="student-name"]')?.value.trim() || "",
+    gradeLevel: form.querySelector('[name="grade-level"]')?.value.trim() || "",
+    school: form.querySelector('[name="school"]')?.value.trim() || "",
+    age: form.querySelector('[name="age"]')?.value.trim() || "",
+    email: form.querySelector('[name="email"]')?.value.trim() || "",
+    contactNumber: form.querySelector('[name="contact-number"]')?.value.trim() || "",
     service: form.querySelector('[name="service"]')?.value.trim() || "",
-    hours: form.querySelector('[name="hours"]')?.value.trim() || "",
-    topic: form.querySelector('[name="topic-needed"]')?.value.trim() || "",
-    additionalInfo: form.querySelector('[name="additional-info"]')?.value.trim() || "",
-    uploadedFileName: form.querySelector('[name="topic-coverage"]')?.files?.[0]?.name || "",
+    package: form.querySelector('[name="package"]')?.value.trim() || "",
+    mode: form.querySelector('[name="mode"]')?.value.trim() || "",
+    preferredTutorSubjects: form.querySelector('[name="preferred-tutor-subjects"]')?.value.trim() || "",
+    preferredSchedule: form.querySelector('[name="preferred-schedule"]')?.value.trim() || "",
+    notes: form.querySelector('[name="notes"]')?.value.trim() || "",
+    uploadedFileName: form.querySelector('[name="attachment"]')?.files?.[0]?.name || "",
   };
 }
 
@@ -375,12 +382,12 @@ const pr1meFaqAnswers = [
   {
     keywords: ["service", "offer", "offered", "tutorial", "class"],
     answer:
-      "Pr1me offers One-on-One Tutorial, Regular Group Tutorial, Study-Buddy Tutoring, PSHS 7 Regular Group Tutoring, Examination Reviews, DOST Review, Booster Program, and LEAP. You can view services, send an inquiry, or open the booking page from the Services page.",
+      "Pr1me offers One-on-One Tutorial, Regular Group Tutorial, Study-Buddy Tutoring, PSHS Regular Group Tutoring, Examination Reviews, DOST-SEI Review, Booster Program, and LEAP. You can view services, send an inquiry, or open the booking page from the Services page.",
   },
   {
     keywords: ["program", "current", "promotion", "summer", "leap", "booster"],
     answer:
-      "Current programs shown on the site include PSHS 7 Regular Group Tutoring, Study-Buddy Tutoring, and One-on-One Tutoring.",
+      "Current programs shown on the site include PSHS Regular Group Tutoring, Study-Buddy Tutoring, and One-on-One Tutoring.",
   },
   {
     keywords: ["book", "booking", "reserve", "schedule", "avail", "form"],
@@ -405,7 +412,7 @@ const pr1meFaqAnswers = [
   {
     keywords: ["online", "face", "hybrid", "onsite", "in person", "f2f"],
     answer:
-      "Yes. One-on-One Tutorial, Regular Group Tutorial, Study-Buddy Tutoring, Examination Reviews, and DOST Review can be Online or Face-to-Face. Booster is listed as Online, while LEAP is listed as Hybrid.",
+      "Yes. One-on-One Tutorial, Regular Group Tutorial, Study-Buddy Tutoring, Examination Reviews, and DOST-SEI Review can be Online or Face-to-Face. Booster is listed as Online, while LEAP is listed as Hybrid.",
   },
   {
     keywords: ["tutor", "teacher", "subjects", "math", "science", "physics", "chemistry"],

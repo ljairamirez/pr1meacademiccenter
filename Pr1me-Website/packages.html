@@ -99,8 +99,8 @@
         <article class="package-card" data-package="academic">
           <div>
             <p class="package-type">Current Program</p>
-            <h3>PSHS 7 Regular Group Tutoring</h3>
-            <p>Scheduled PSHS-aligned group tutoring with assignment and assessment support.</p>
+            <h3>PSHS Regular Group Tutoring</h3>
+            <p>PSHS-aligned regular group tutoring for selected campuses and grade levels with assignment and assessment support.</p>
           </div>
           <strong><a href="https://forms.gle/hq6tTxyBT85ncFT2A" target="_blank" rel="noreferrer">Join Form</a></strong>
         </article>
@@ -117,8 +117,8 @@
         <article class="package-card" data-package="review">
           <div>
             <p class="package-type">Review Program</p>
-            <h3>DOST Review</h3>
-            <p>Focused group review sessions for upcoming Undergraduate DOST Scholarship examination.</p>
+            <h3>DOST-SEI Review</h3>
+            <p>Focused group review sessions for the upcoming Undergraduate DOST-SEI Scholarship Examination.</p>
           </div>
           <strong>Online or Face-to-Face</strong>
         </article>
@@ -155,61 +155,87 @@
         <form class="booking-form" name="service-inquiry" method="POST" netlify netlify-honeypot="bot-field" enctype="multipart/form-data" data-booking-form>
           <input type="hidden" name="form-name" value="service-inquiry">
           <input type="hidden" name="submission-title" data-submission-title value="">
+          <input type="hidden" name="service" value="One-on-One Tutoring" data-summary-label="Service">
           <p class="hidden-field">
             <label>Do not fill this out: <input name="bot-field"></label>
           </p>
+          <p class="form-note">Fields marked with * are required.</p>
 
           <div class="form-grid">
             <label>
-              Name of Guardian
-              <input type="text" name="guardian-name" data-summary-label="Guardian" required>
+              Student's Name <span aria-hidden="true">*</span>
+              <input type="text" name="student-name" data-summary-label="Student's Name" autocomplete="name" required>
             </label>
 
             <label>
-              Name of Student
-              <input type="text" name="student-name" data-summary-label="Student" required>
+              Grade Level <span aria-hidden="true">*</span>
+              <input type="text" name="grade-level" data-summary-label="Grade Level" placeholder="Example: Grade 8" required>
             </label>
 
             <label>
-              Service to Avail
-              <select name="service" data-summary-label="Service" required>
-                <option value="">Select a service</option>
-                <option>One-on-One Tutorial</option>
-                <option>Regular Group Tutorial</option>
-                <option>Examination Reviews</option>
-                <option>DOST Review</option>
-                <option>Booster Program</option>
-                <option>Level Enhancement and Advancement Program (LEAP)</option>
-                <option>Others / To be discussed</option>
+              School <span aria-hidden="true">*</span>
+              <input type="text" name="school" data-summary-label="School" required>
+            </label>
+
+            <label>
+              Age <span aria-hidden="true">*</span>
+              <input type="number" name="age" data-summary-label="Age" min="3" max="99" required>
+            </label>
+
+            <label>
+              Guardian <span aria-hidden="true">*</span>
+              <input type="text" name="guardian-name" data-summary-label="Guardian" autocomplete="name" required>
+            </label>
+
+            <label>
+              Email
+              <input type="email" name="email" data-summary-label="Email" autocomplete="email">
+            </label>
+
+            <label>
+              Contact Number <span aria-hidden="true">*</span>
+              <input type="tel" name="contact-number" data-summary-label="Contact Number" autocomplete="tel" required>
+            </label>
+
+            <label>
+              Package
+              <select name="package" data-summary-label="Package">
+                <option value="">Select package</option>
+                <option>5 hours</option>
+                <option>10 hours</option>
+                <option>15 hours</option>
               </select>
             </label>
 
             <label>
-              Number of Hours
-              <select name="hours" data-summary-label="Hours" required>
-                <option value="">Select hours</option>
-                <option>Hourly</option>
-                <option>5 hours</option>
-                <option>10 hours</option>
-                <option>15 hours</option>
-                <option>15+ hours</option>
+              Mode <span aria-hidden="true">*</span>
+              <select name="mode" data-summary-label="Mode" required>
+                <option value="">Select mode</option>
+                <option>Online</option>
+                <option>Face-to-Face</option>
+                <option>Mixed</option>
               </select>
             </label>
           </div>
 
           <label>
-            Subject / Exam / Year Level
-            <input type="text" name="topic-needed" data-summary-label="Topic Needed" required>
+            Preferred Tutor's Name and/or Subjects
+            <textarea name="preferred-tutor-subjects" data-summary-label="Preferred Tutor and/or Subjects" rows="4" placeholder="Type the preferred tutor name, subject/s, exam, or topic needed."></textarea>
           </label>
 
           <label>
-            Coverage, Sample Topic, Special Exam (DOST-SEI Scholarship Exam)
-            <textarea name="additional-info" data-summary-label="Additional Info" rows="5" placeholder="Optional"></textarea>
+            Preferred Schedule
+            <textarea name="preferred-schedule" data-summary-label="Preferred Schedule" rows="4" placeholder="Example: Mondays and Wednesdays, 6 PM onwards"></textarea>
           </label>
 
           <label>
-            Additional Documents
-            <input type="file" name="topic-coverage" data-summary-label="Uploaded Coverage" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp">
+            Notes
+            <textarea name="notes" data-summary-label="Notes" rows="5" placeholder="Add learning concerns, goals, coverage, or other details."></textarea>
+          </label>
+
+          <label>
+            Attachment / Additional Documents
+            <input type="file" name="attachment" data-summary-label="Attachment" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp">
           </label>
 
           <div class="booking-actions">

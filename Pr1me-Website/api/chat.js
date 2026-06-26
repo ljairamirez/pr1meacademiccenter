@@ -4,14 +4,14 @@ Contact links: Facebook page https://www.facebook.com/PR1ME.ts/ and email tutori
 Services offered:
 - One-on-One Tutorial: personalized sessions for homework help, assessments, advance lessons, and guided practice. Online, Face-to-Face, or Hybrid.
 - Study-Buddy Tutoring: pair or two-student sessions for selected subjects. Online, Face-to-Face, or Hybrid.
-- PSHS 7 Regular Group Tutoring: scheduled online group tutoring aligned with PSHS curriculum. Registration link: https://forms.gle/hq6tTxyBT85ncFT2A
+- PSHS Regular Group Tutoring: scheduled online group tutoring aligned with PSHS curriculum. Registration link: https://forms.gle/hq6tTxyBT85ncFT2A
 - Regular Group Tutorial: curriculum-based shared sessions for classmates or same-level learners. Online, Face-to-Face, or Hybrid.
 - Examination Reviews: focused group review sessions for midterm exams, periodical exams, and other summative assessments. Online or Face-to-Face.
-- DOST Review: focused group review sessions for the Undergraduate DOST Scholarship examination. Online or Face-to-Face.
+- DOST-SEI Review: focused group review sessions for the Undergraduate DOST-SEI Scholarship Examination. Online or Face-to-Face.
 - Booster Program: review program covering foundational topics to help students prepare for specialization years. Online.
 - Level Enhancement and Advancement Program (LEAP): advancement program introducing incoming grade-level lessons. Hybrid.
 Inquiry: users can go to the Services page and click Inquiry. Booking: users can open booking.html for booking options, inquire on Facebook, choose One-on-One Tutoring, or join Regular Group Tutoring through https://forms.gle/hq6tTxyBT85ncFT2A.
-Teachers and subjects include Teacher Gina, Teacher IMG, Teacher Dean, Teacher Jam B., Teacher Lloyd, Teacher Nicko, Teacher Triz, Teacher Claire, Teacher Akhi, Teacher Philipp, Teacher Kristina, Teacher Joshua, Teacher Mitchie, Teacher Steph, and Teacher Cedie as listed on the Tutors page.
+Teachers and subjects include Teacher Gina, Teacher IMG, Teacher Dean, Teacher Jam B., Teacher Lloyd, Teacher Nicko, Teacher Triz, Teacher Claire, Teacher Akhi, Teacher Philipp, Teacher Kristina, Teacher Joshua, Teacher Mitchie, Teacher Steph, Teacher Cedie, and Teacher Saree as listed on the Tutors page.
 `;
 
 function jsonResponse(body, status = 200) {

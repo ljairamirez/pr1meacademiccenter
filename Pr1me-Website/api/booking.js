@@ -17,10 +17,17 @@ function buildBookingSummary(data) {
   const fields = [
     ["Guardian Name", data.guardianName],
     ["Student Name", data.studentName],
+    ["Grade Level", data.gradeLevel],
+    ["School", data.school],
+    ["Age", data.age],
+    ["Email", data.email],
+    ["Contact Number", data.contactNumber],
     ["Service", data.service],
-    ["Hours", data.hours],
-    ["Subject / Exam / Topic", data.topic],
-    ["Additional Info", data.additionalInfo],
+    ["Package", data.package],
+    ["Mode", data.mode],
+    ["Preferred Tutor and/or Subjects", data.preferredTutorSubjects],
+    ["Preferred Schedule", data.preferredSchedule],
+    ["Notes", data.notes],
     ["Uploaded File Name", data.uploadedFileName],
   ];
 
@@ -54,11 +61,15 @@ export default async function handler(request) {
 
   const guardianName = clean(data.guardianName);
   const studentName = clean(data.studentName);
-  const service = clean(data.service);
-  const topic = clean(data.topic);
+  const gradeLevel = clean(data.gradeLevel);
+  const school = clean(data.school);
+  const age = clean(data.age);
+  const contactNumber = clean(data.contactNumber);
+  const service = clean(data.service) || "One-on-One Tutoring";
+  const mode = clean(data.mode);
 
-  if (!guardianName || !studentName || !service || !topic) {
-    return jsonResponse({ error: "Please complete the required booking fields." }, 400);
+  if (!guardianName || !studentName || !gradeLevel || !school || !age || !contactNumber || !mode) {
+    return jsonResponse({ error: "Please complete the required inquiry fields." }, 400);
   }
 
   const subject = `${studentName} - ${service}`;

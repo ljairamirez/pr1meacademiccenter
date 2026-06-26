@@ -1011,6 +1011,10 @@ textarea:focus {
   font-weight: 800;
 }
 
+.booking-form label span {
+  color: var(--red);
+}
+
 .form-note {
   margin: 0;
   color: var(--muted);
