@@ -1801,6 +1801,7 @@ textarea:focus {
 }
 
 /* White card boxes with testimonial background inside each box only */
+
 .current-program-card,
 .package-card,
 .tutor-card,
@@ -1808,9 +1809,12 @@ textarea:focus {
 .feedback-photo,
 .booking-option-card,
 .why-panel,
-.owner-panel {
+.owner-panel,
+.regular-group-copy,
+.regular-group-poster {
+  background-color: #ffffff !important;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.18)),
+    linear-gradient(rgba(255, 250, 247, 0.18), rgba(255, 250, 247, 0.18)),
     url("Assets/testimonial_bg.png") !important;
 
   background-size:
@@ -1819,9 +1823,58 @@ textarea:focus {
 
   background-position:
     center,
-    center !important;
+    top left !important;
 
   background-repeat:
     repeat,
     repeat !important;
+}
+
+.regular-group-feature-card {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(340px, 1.1fr);
+  align-items: stretch;
+  gap: 0;
+  min-height: 420px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.regular-group-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 34px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.18)),
+    url("Assets/testimonial_bg.png") center / 180px auto repeat;
+}
+
+.regular-group-poster {
+  min-width: 0;
+  min-height: 420px;
+  overflow: hidden;
+  border-left: 1px solid var(--line);
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.18)),
+    url("Assets/testimonial_bg.png") center / 180px auto repeat;
+}
+
+/* Testimonial background for the Home hero only */
+
+.home-hero {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 122, 26, 0.10) 0%,
+      rgba(255, 255, 255, 0.42) 42%,
+      rgba(198, 40, 40, 0.08) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.38),
+      rgba(255, 224, 203, 0.30)
+    ),
+    url("Assets/testimonial_bg.png") center / 170px auto repeat !important;
 }
