@@ -141,9 +141,11 @@ const tutorCards = [...document.querySelectorAll(".tutor-card")];
 
 tutorCards.forEach((card, index) => {
   const tutorName = card.querySelector("h3")?.textContent.trim() || "";
-  const nickname = tutorName.replace(/^Teacher\s+/i, "").trim() || tutorName;
+  const fullName = card.querySelector(".complete-name strong")?.textContent.trim() || "";
+  const fallbackName = tutorName.replace(/^Teacher\s+/i, "").trim() || tutorName;
+  const sortName = fullName || fallbackName;
   card.dataset.originalIndex = String(index);
-  card.dataset.sortName = nickname.toLowerCase();
+  card.dataset.sortName = sortName.toLowerCase();
 });
 
 if (tutorSearch && tutorGrid) {
@@ -206,7 +208,7 @@ document.querySelectorAll("[data-package-filter]").forEach((button) => {
 });
 
 const bookingPanel = document.querySelector("#booking");
-const openBookingButton = document.querySelector("[data-open-booking]");
+const openBookingButtons = document.querySelectorAll("[data-open-booking]");
 const bookingBackButton = document.querySelector("[data-booking-back]");
 const bookingForm = document.querySelector("[data-booking-form]");
 const emailBookingButton = document.querySelector("[data-email-booking]");
@@ -379,9 +381,15 @@ function updateBookingSubmissionTitle(form) {
   return title;
 }
 
-if (openBookingButton) {
-  openBookingButton.addEventListener("click", showBookingPanel);
-}
+openBookingButtons.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    showBookingPanel();
+    if (window.location.hash !== "#booking") {
+      history.replaceState(null, "", "#booking");
+    }
+  });
+});
 
 if (window.location.hash === "#booking") {
   showBookingPanel();
@@ -507,7 +515,28 @@ const chatSuggestions = [
   "How can I contact Pr1me?",
   "Do you offer online sessions?",
   "Who are the tutors?",
+  "Who teaches Mathematics?",
   "How do I inquire on Facebook?",
+];
+
+const tutorDirectory = [
+  { name: "Teacher Gina", fullName: "Gina-Lyn Laurenciano-Calderon", subjects: ["Mathematics", "Statistics", "Review Support"], degree: "BS Mathematics and Science Teaching, Major in Mathematics", availability: "TBA" },
+  { name: "Teacher IMG", fullName: "Ian Mhar Gabriel D. Aguila", subjects: ["Biology", "Chemistry", "Earth Science"], degree: "BS Mathematics and Science Teaching", availability: "TBA" },
+  { name: "Teacher Dean", fullName: "Dean Angelo Calvendra Leyretana", subjects: ["Mathematics", "Physics", "SocSci"], degree: "BS Food Technology", availability: "MTWThFSat 9am-9pm" },
+  { name: "Teacher Jam B.", fullName: "Jamela Verna L. Beniga", subjects: ["Mathematics", "Physics", "Land Surveying"], degree: "BS Geodetic Engineering", availability: "Monday-Friday, 9am to 4pm" },
+  { name: "Teacher Lloyd", fullName: "Lloyd Ramirez", subjects: ["Mathematics", "Statistics", "Physics"], degree: "BS Geodetic Engineering", availability: "MTWThF - 9 AM - 4 PM" },
+  { name: "Teacher Nicko", fullName: "Nicko Gonzales", subjects: ["Algebra", "Geometry", "Statistics"], degree: "BS Business Administration", availability: "TBA" },
+  { name: "Teacher Triz", fullName: "Triz Darylle Agsunod", subjects: ["Chemistry", "Mathematics", "General Science"], degree: "BS Food Technology", availability: "MTWThF - 5PM - 10 PM, Sat - 9 AM - 5 PM" },
+  { name: "Teacher Claire", fullName: "Claire Devis", subjects: ["Biology", "Chemistry", "Earth Science"], degree: "B Secondary Education Major in Biology", availability: "MTWThF - 6 PM - 9 PM" },
+  { name: "Teacher Akhi", fullName: "Akhillis Dela Cruz Gochuico", subjects: ["Mathematics", "General Science", "Statistics"], degree: "BS Industrial Engineering", availability: "TBA" },
+  { name: "Teacher Philipp", fullName: "Philipp Gandeaz Dolor Jr.", subjects: ["Mathematics", "Physics", "Robotics"], degree: "BS Electronics Engineering", availability: "MTWThF 7am-10:30am & 6pm-10pm, Sat-Sun 8am-8pm" },
+  { name: "Teacher Kristina", fullName: "Kristina", subjects: ["Biology", "MBB", "Molecular Biology"], degree: "Details to be added soon", availability: "TBA" },
+  { name: "Teacher Joshua", fullName: "Joshua S. Dela Paz", subjects: ["Biology", "Chemistry", "Earth Science"], degree: "B Secondary Education Major in Biology", availability: "MTWThF 6pm - 9pm" },
+  { name: "Teacher Mitchie", fullName: "Mitchie Yance M. Sombria", subjects: ["English", "Reading Comprehension", "Business Math"], degree: "BS Business Economics", availability: "MTWThF 5pm - 8pm Sat 10 am - 6pm" },
+  { name: "Teacher Steph", fullName: "Stephanie U. Cruz", subjects: ["Mathematics", "Physics", "Biology"], degree: "B Secondary Education Major in Mathematics Minor in Science", availability: "Tuesday and Thursday (5-9 pm), Saturday and Sunday (1-7 pm)" },
+  { name: "Teacher Cedie", fullName: "Sean Cedrick J. Gavilan", subjects: ["Mathematics", "Language Proficiency", "Reading Comprehension"], degree: "BS Computer Engineering", availability: "MTWThF (7am - 10am) & (7pm - 10pm)" },
+  { name: "Teacher Saree", fullName: "Saree Evidente", subjects: ["Subject TBA"], degree: "Details to be added soon", availability: "TBA" },
+  { name: "Teacher Root", fullName: "Reuter Dave Aquino", subjects: ["Physics", "Mathematics", "Earth Science"], degree: "B Secondary Education Major in Physics", availability: "MTWThF 6 pm - 9 pm" },
 ];
 
 const pr1meFaqAnswers = [
@@ -569,6 +598,64 @@ function normalizeChatText(text) {
   return text.toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
 }
 
+function findTutorByQuestion(normalized) {
+  return tutorDirectory.find((tutor) => {
+    const names = [tutor.name, tutor.fullName, tutor.name.replace(/^Teacher\s+/i, "")]
+      .map(normalizeChatText)
+      .filter(Boolean);
+    return names.some((name) => normalized.includes(name));
+  });
+}
+
+function findTutorsBySubject(normalized) {
+  const subjectAliases = {
+    math: "mathematics",
+    maths: "mathematics",
+    sci: "science",
+    socsci: "socsci",
+    social: "social",
+    english: "english",
+    physics: "physics",
+    chemistry: "chemistry",
+    biology: "biology",
+    statistics: "statistics",
+    robotics: "robotics",
+    reading: "reading",
+    language: "language",
+    surveying: "surveying",
+    earth: "earth",
+  };
+  const normalizedSubjects = Object.entries(subjectAliases)
+    .filter(([alias]) => normalized.includes(alias))
+    .map(([, subject]) => subject);
+
+  if (!normalizedSubjects.length) return [];
+
+  return tutorDirectory.filter((tutor) => {
+    const subjectText = normalizeChatText(tutor.subjects.join(" "));
+    return normalizedSubjects.some((subject) => subjectText.includes(subject));
+  });
+}
+
+function getTutorChatReply(normalized) {
+  const specificTutor = findTutorByQuestion(normalized);
+  if (specificTutor) {
+    return `${specificTutor.name} (${specificTutor.fullName}) handles ${specificTutor.subjects.join(", ")}. Degree/program: ${specificTutor.degree}. Availability: ${specificTutor.availability}.`;
+  }
+
+  const subjectTutors = findTutorsBySubject(normalized);
+  if (subjectTutors.length) {
+    const names = subjectTutors
+      .slice(0, 8)
+      .map((tutor) => `${tutor.name} (${tutor.subjects.join(", ")})`)
+      .join("; ");
+    const extra = subjectTutors.length > 8 ? " You can see more by searching the Tutors page." : "";
+    return `For that subject, available matching tutors include: ${names}.${extra}`;
+  }
+
+  return "";
+}
+
 function getLocalChatReply(text) {
   const normalized = normalizeChatText(text);
 
@@ -586,6 +673,9 @@ function getLocalChatReply(text) {
   }[normalized];
 
   if (directSuggestion) return directSuggestion;
+
+  const tutorReply = getTutorChatReply(normalized);
+  if (tutorReply) return tutorReply;
 
   const match = pr1meFaqAnswers.find((item) =>
     item.keywords.some((keyword) => normalized.includes(keyword))

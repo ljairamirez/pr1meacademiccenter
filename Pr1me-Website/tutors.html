@@ -9,17 +9,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="tutors">
-  <div class="site-loader" data-site-loader role="dialog" aria-label="Welcome to Pr1me Tutorial Services" aria-modal="true">
-    <div class="loader-card">
-      <div class="loader-logo-ring">
-        <img src="Assets/PrimeLogo.jpg" alt="Pr1me logo">
-      </div>
-      <p class="loader-eyebrow">Welcome to</p>
-      <h2>Pr1me Tutorial Services</h2>
-      <p>Together we will produce Pr1me students.</p>
-    </div>
-  </div>
-
   <header class="site-header">
     <nav class="nav-shell" aria-label="Main navigation">
       <a class="brand" href="index.html" aria-label="Pr1me Tutorial Services home">
@@ -55,13 +44,38 @@
     </section>
 
     <section class="section team-section" aria-labelledby="tutors-title">
-      <div class="team-photo">
-        <img data-asset-image="team1" src="" alt="Team Picture 1">
+      <div class="section-heading compact">
+        <div>
+          <p class="eyebrow">Pr1me Tutors</p>
+          <h2 id="tutors-title">The Team Behind Pr1me</h2>
+        </div>
+      </div>
+
+      <div class="team-gallery" aria-label="Pr1me tutor team photos">
+        <figure class="team-gallery-item team-gallery-main team-gallery-formal">
+          <img src="Assets/team-grid-formal.jpg" alt="Pr1me tutor team formal group photo">
+        </figure>
+        <figure class="team-gallery-item team-gallery-prime">
+          <img src="Assets/team-grid-prime.jpg" alt="Pr1me tutor team one sign group photo">
+        </figure>
+        <figure class="team-gallery-item team-gallery-group">
+          <img src="Assets/team-grid-group.jpg" alt="Pr1me tutor team group photo">
+        </figure>
+        <figure class="team-gallery-item team-gallery-candid">
+          <img src="Assets/team-grid-candid.jpg" alt="Pr1me tutor team candid photo">
+        </figure>
+        <figure class="team-gallery-item team-gallery-fun">
+          <img src="Assets/team-grid-fun.jpg" alt="Pr1me tutor team fun group photo">
+        </figure>
+        
+        <figure class="team-gallery-item team-gallery-laugh">
+          <img src="Assets/team-grid-laugh.jpg" alt="Pr1me tutor team laughing group photo">
+        </figure>
       </div>
     </section>
 
 
-    <section class="section tutors-section" aria-labelledby="tutors-title">
+    <section class="section tutors-section" aria-label="Tutor directory">
       
 
       <div class="tool-row">
@@ -403,6 +417,26 @@
             <p>Availability: TBA</p>
           </div>
         </article>      
+
+        <article class="tutor-card" data-search="teacher root reuter dave aquino physics mathematics earth science elementary junior high school senior high school stem college upcat education">
+          <div class="tutor-profile">
+            <div class="tutor-photo">
+              <img data-asset-image="teacher root" data-asset-fallback="tutor17" src="" alt="Teacher Root profile photo">
+              <div class="photo-fallback">Root</div>
+            </div>
+            <h3>Teacher Root</h3>
+          </div>
+          <div class="tutor-details">
+            <ul>
+              <li>Physics</li>
+              <li>Mathematics</li>
+              <li>Earth Science</li>
+            </ul>
+            <p class="complete-name"><strong>Reuter Dave Aquino</strong></p>
+            <p>B Secondary Education Major in Physics</p>
+            <p>Availability: MTWThF 6 pm - 9 pm</p>
+          </div>
+        </article>
       </div>
     </section>
   </main>

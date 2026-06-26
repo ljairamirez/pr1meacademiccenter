@@ -9,17 +9,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="packages">
-  <div class="site-loader" data-site-loader role="dialog" aria-label="Welcome to Pr1me Tutorial Services" aria-modal="true">
-    <div class="loader-card">
-      <div class="loader-logo-ring">
-        <img src="Assets/PrimeLogo.jpg" alt="Pr1me logo">
-      </div>
-      <p class="loader-eyebrow">Welcome to</p>
-      <h2>Pr1me Tutorial Services</h2>
-      <p>Together we will produce Pr1me students.</p>
-    </div>
-  </div>
-
   <header class="site-header">
     <nav class="nav-shell" aria-label="Main navigation">
       <a class="brand" href="index.html" aria-label="Pr1me Tutorial Services home">
@@ -77,7 +66,7 @@
             <h3>One-on-One Tutorial</h3>
             <p>Personalized sessions for homework help, assessments, advance lessons, and guided practice.</p>
           </div>
-          <strong>Online or Face-to-Face</strong>
+          <strong><a href="#booking" data-open-booking>Book Personalized Session</a></strong>
         </article>
 
         <article class="package-card" data-package="academic">
@@ -86,7 +75,7 @@
             <h3>Regular Group Tutorial</h3>
             <p>Curriculum-based shared sessions for classmates or same-level learners.</p>
           </div>
-          <strong>Online or Face-to-Face</strong>
+          <strong><a href="booking.html">View Regular Groups</a></strong>
         </article>
         <article class="package-card" data-package="academic">
           <div>
@@ -171,7 +160,7 @@
 
             <label>
               Grade Level <span aria-hidden="true">*</span>
-              <input type="text" name="grade-level" data-summary-label="Grade Level" placeholder="Example: Grade 8" required>
+              <input type="text" name="grade-level" data-summary-label="Grade Level" placeholder="Example: Grade 6, Grade 8, or College" required>
             </label>
 
             <label>
