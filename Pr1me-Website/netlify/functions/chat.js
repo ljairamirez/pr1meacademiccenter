@@ -9,7 +9,7 @@ Services offered:
 - Booster Program: review program covering foundational topics to help students prepare for specialization years. Online.
 - Level Enhancement and Advancement Program (LEAP): advancement program introducing incoming grade-level lessons. Hybrid.
 Booking: users can go to the Services page and click Book a Service. They can submit through the website, send via email, or inquire on Facebook.
-Teachers and subjects include Teacher Gina, Teacher IMG, Teacher Dean, Teacher Jam B., Teacher Lloyd, Teacher Nicko, Teacher Triz, Teacher Claire, Teacher Akhi, Teacher Philipp, and others as listed on the Tutors page.
+Teachers and subjects include Teacher Gina, Teacher IMG, Teacher Dean, Teacher Jam B., Teacher Lloyd, Teacher Nicko, Teacher Triz, Teacher Claire, Teacher Akhi, Teacher Philipp, Teacher Kristina, Teacher Joshua, Teacher Mitchie, Teacher Steph, and Teacher Cedie as listed on the Tutors page.
 `;
 
 function jsonResponse(statusCode, body) {
