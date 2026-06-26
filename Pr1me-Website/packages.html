@@ -147,8 +147,9 @@
       <section class="booking-panel" id="booking" aria-labelledby="booking-title" hidden>
         <div class="section-heading compact">
           <div>
-            <p class="eyebrow">Inquiry Form</p>
+            <p class="eyebrow">One-on-One Session Form</p>
             <h2 id="booking-title">Send an Inquiry</h2>
+            <p class="form-note">Fill this out for one-on-one tutoring inquiries. Pr1me will review the details and contact the guardian for confirmation.</p>
           </div>
           
         </div>
@@ -161,10 +162,6 @@
             <label>Do not fill this out: <input name="bot-field"></label>
           </p>
           <p class="form-note">Fields marked with * are required.</p>
-          <div class="booking-resource-row">
-            <a class="button secondary small-button" href="Assets/Pr1me_TandC.pdf" target="_blank" rel="noreferrer">View Terms and Conditions</a>
-            <button class="button secondary small-button" type="button" title="Payment option files can be linked here once attached." disabled>View Payment Options</button>
-          </div>
 
           <div class="form-grid">
             <label>
@@ -228,6 +225,17 @@
             </label>
           </div>
 
+          <div class="booking-resource-row">
+            <button class="button secondary small-button" type="button" data-terms-open>View Terms and Conditions</button>
+            <button class="button secondary small-button" type="button" title="Payment option files can be linked here once attached." disabled>View Payment Options</button>
+            <strong class="downpayment-note">Downpayment: PHP 2,000</strong>
+          </div>
+
+          <label class="terms-check">
+            <input type="checkbox" name="terms-approved" data-summary-label="Terms Approved" data-terms-approved required>
+            I have viewed and approved the Terms and Conditions.
+          </label>
+
           <label>
             Preferred Tutor's Name and/or Subjects
             <textarea name="preferred-tutor-subjects" data-summary-label="Preferred Tutor and/or Subjects" rows="4" placeholder="Type the preferred tutor name, subject/s, exam, or topic needed."></textarea>
@@ -259,6 +267,20 @@
       </section>
     </section>
   </main>
+
+  <div class="terms-modal" data-terms-modal hidden role="dialog" aria-modal="true" aria-labelledby="terms-modal-title">
+    <div class="terms-modal-card">
+      <div class="terms-modal-header">
+        <h2 id="terms-modal-title">Terms and Conditions</h2>
+        <button type="button" data-terms-close aria-label="Close Terms and Conditions">x</button>
+      </div>
+      <iframe src="Assets/Pr1me_TandC.pdf" title="Pr1me Terms and Conditions"></iframe>
+      <div class="terms-modal-actions">
+        <a class="button secondary small-button" href="Assets/Pr1me_TandC.pdf" target="_blank" rel="noreferrer">Open Full File</a>
+        <button class="button primary small-button" type="button" data-terms-approve>Approve Terms and Conditions</button>
+      </div>
+    </div>
+  </div>
 
   <footer class="site-footer">
     <div class="footer-brand">

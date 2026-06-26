@@ -75,7 +75,7 @@ export default async function handler(request) {
 
   const subject = `${studentName} - ${service}`;
   const summary = buildBookingSummary(data);
-  const to = (process.env.BOOKING_TO_EMAIL || "ljairamirez@gmail.com,glaurenciano@gmail.com").split(",").map((email) => email.trim()).filter(Boolean);
+  const to = (process.env.BOOKING_TO_EMAIL || "ljairamirez@gmail.com,glaurenciano@gmail.com,tutorialservices.pr1me@gmail.com").split(",").map((email) => email.trim()).filter(Boolean);
   const from = process.env.BOOKING_FROM_EMAIL || "Pr1me Website <onboarding@resend.dev>";
 
   try {

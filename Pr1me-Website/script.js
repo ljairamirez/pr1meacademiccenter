@@ -212,6 +212,11 @@ const bookingForm = document.querySelector("[data-booking-form]");
 const emailBookingButton = document.querySelector("[data-email-booking]");
 const facebookBookingButton = document.querySelector("[data-facebook-booking]");
 const rateOutput = document.querySelector("[data-rate-output]");
+const termsModal = document.querySelector("[data-terms-modal]");
+const openTermsButton = document.querySelector("[data-terms-open]");
+const closeTermsButton = document.querySelector("[data-terms-close]");
+const approveTermsButton = document.querySelector("[data-terms-approve]");
+const termsApprovedCheckbox = document.querySelector("[data-terms-approved]");
 const isNetlifyHost = window.location.hostname.includes("netlify");
 const useVercelBooking = !isNetlifyHost && window.location.protocol !== "file:";
 
@@ -290,6 +295,18 @@ function updateTutoringRate() {
   }
 
   rateOutput.value = tutoringRateTable[selectedPackage]?.[mode]?.[category] || "";
+}
+
+function openTermsModal() {
+  if (!termsModal) return;
+  termsModal.hidden = false;
+  document.body.classList.add("modal-open");
+}
+
+function closeTermsModal() {
+  if (!termsModal) return;
+  termsModal.hidden = true;
+  document.body.classList.remove("modal-open");
 }
 
 function showBookingPanel() {
@@ -374,6 +391,27 @@ if (bookingBackButton) {
   bookingBackButton.addEventListener("click", hideBookingPanel);
 }
 
+if (openTermsButton) {
+  openTermsButton.addEventListener("click", openTermsModal);
+}
+
+if (closeTermsButton) {
+  closeTermsButton.addEventListener("click", closeTermsModal);
+}
+
+if (approveTermsButton) {
+  approveTermsButton.addEventListener("click", () => {
+    if (termsApprovedCheckbox) termsApprovedCheckbox.checked = true;
+    closeTermsModal();
+  });
+}
+
+if (termsModal) {
+  termsModal.addEventListener("click", (event) => {
+    if (event.target === termsModal) closeTermsModal();
+  });
+}
+
 if (bookingForm) {
   updateTutoringRate();
   bookingForm.addEventListener("input", () => {
@@ -387,6 +425,13 @@ if (bookingForm) {
   bookingForm.addEventListener("submit", async (event) => {
     updateBookingSubmissionTitle(bookingForm);
     updateTutoringRate();
+
+    if (termsApprovedCheckbox && !termsApprovedCheckbox.checked) {
+      event.preventDefault();
+      openTermsModal();
+      alert("Please view and approve the Terms and Conditions before submitting.");
+      return;
+    }
 
     if (!useVercelBooking) return;
 
@@ -433,7 +478,7 @@ if (emailBookingButton && bookingForm) {
     const summary = getBookingSummary(bookingForm);
     const subject = encodeURIComponent(updateBookingSubmissionTitle(bookingForm) || "Pr1me Tutorial Services Inquiry");
     const body = encodeURIComponent(summary);
-    window.location.href = `mailto:ljairamirez@gmail.com,glaurenciano@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:ljairamirez@gmail.com,glaurenciano@gmail.com,tutorialservices.pr1me@gmail.com?subject=${subject}&body=${body}`;
   });
 }
 
