@@ -1,4 +1,14 @@
-const assetExtensions = ["png", "jpg", "jpeg", "jfif", "webp"];
+const assetExtensions = [
+  "png",
+  "jpg",
+  "JPG",
+  "jpeg",
+  "JPEG",
+  "jfif",
+  "JFIF",
+  "webp",
+  "WEBP"
+];
 
 const siteLoader = document.querySelector("[data-site-loader]");
 
