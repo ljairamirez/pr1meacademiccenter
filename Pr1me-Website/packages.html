@@ -40,7 +40,7 @@
         <a href="tutors.html" data-page-link="tutors">Tutors</a>
         <a href="packages.html" data-page-link="packages">Services</a>
         <a href="about.html" data-page-link="about">About</a>
-        <a class="nav-cta" href="https://www.facebook.com/PR1ME.ts" target="_blank" rel="noreferrer">Book on Facebook</a>
+        <a class="nav-cta" href="https://www.facebook.com/PR1ME.ts" target="_blank" rel="noreferrer">Inquire on Facebook</a><a class="nav-cta nav-book" href="booking.html" data-page-link="booking">Book a Service</a>
       </div>
     </nav>
   </header>
@@ -66,7 +66,7 @@
           <button type="button" data-package-filter="review">Review</button>
           <button type="button" data-package-filter="summer">Summer</button>
         </div>
-        <button class="button primary" type="button" data-open-booking>Book a Service</button>
+        <div class="package-actions"><button class="button primary" type="button" data-open-booking>Inquiry</button><a class="button secondary" href="booking.html">Book a Service</a></div>
       </div>
 
       <div class="package-grid">
@@ -82,10 +82,27 @@
         <article class="package-card" data-package="academic">
           <div>
             <p class="package-type">Academic Support</p>
-            <h3>Small Group Tutorial</h3>
+            <h3>Regular Group Tutorial</h3>
             <p>Curriculum-based shared sessions for classmates or same-level learners.</p>
           </div>
           <strong>Online or Face-to-Face</strong>
+        </article>
+        <article class="package-card" data-package="academic">
+          <div>
+            <p class="package-type">Academic Support</p>
+            <h3>Study-Buddy Tutoring</h3>
+            <p>Pair or two-student sessions for selected subjects, available face-to-face, online, or hybrid.</p>
+          </div>
+          <strong>Pair or 2 Students</strong>
+        </article>
+
+        <article class="package-card" data-package="academic">
+          <div>
+            <p class="package-type">Current Program</p>
+            <h3>PSHS 7 Regular Group Tutoring</h3>
+            <p>Scheduled PSHS-aligned group tutoring with assignment and assessment support.</p>
+          </div>
+          <strong><a href="https://forms.gle/hq6tTxyBT85ncFT2A" target="_blank" rel="noreferrer">Join Form</a></strong>
         </article>
 
         <article class="package-card" data-package="review">
@@ -129,14 +146,14 @@
       <section class="booking-panel" id="booking" aria-labelledby="booking-title" hidden>
         <div class="section-heading compact">
           <div>
-            <p class="eyebrow">Booking Form</p>
-            <h2 id="booking-title">Book a Service</h2>
+            <p class="eyebrow">Inquiry Form</p>
+            <h2 id="booking-title">Send an Inquiry</h2>
           </div>
           
         </div>
 
-        <form class="booking-form" name="service-booking" method="POST" netlify netlify-honeypot="bot-field" enctype="multipart/form-data" data-booking-form>
-          <input type="hidden" name="form-name" value="service-booking">
+        <form class="booking-form" name="service-inquiry" method="POST" netlify netlify-honeypot="bot-field" enctype="multipart/form-data" data-booking-form>
+          <input type="hidden" name="form-name" value="service-inquiry">
           <input type="hidden" name="submission-title" data-submission-title value="">
           <p class="hidden-field">
             <label>Do not fill this out: <input name="bot-field"></label>
@@ -158,7 +175,7 @@
               <select name="service" data-summary-label="Service" required>
                 <option value="">Select a service</option>
                 <option>One-on-One Tutorial</option>
-                <option>Small Group Tutorial</option>
+                <option>Regular Group Tutorial</option>
                 <option>Examination Reviews</option>
                 <option>DOST Review</option>
                 <option>Booster Program</option>

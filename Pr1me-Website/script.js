@@ -1,4 +1,4 @@
-const assetExtensions = ["png", "jpg", "jpeg", "webp"];
+const assetExtensions = ["png", "jpg", "jpeg", "jfif", "webp"];
 
 const siteLoader = document.querySelector("[data-site-loader]");
 
@@ -228,7 +228,7 @@ function hideBookingPanel() {
 
 function getBookingSummary(form) {
   const title = updateBookingSubmissionTitle(form);
-  const summaryLines = [title || "Pr1me Tutorial Services Booking Inquiry"];
+  const summaryLines = [title || "Pr1me Tutorial Services Inquiry", "", "Inquiry Details:"];
   const fields = form.querySelectorAll("[data-summary-label]");
 
   fields.forEach((field) => {
@@ -243,6 +243,8 @@ function getBookingSummary(form) {
       summaryLines.push(`${label}: ${value}`);
     }
   });
+
+  summaryLines.push("", "Please review this inquiry and contact the guardian for confirmation.");
 
   return summaryLines.join("\n");
 }
@@ -278,6 +280,10 @@ if (openBookingButton) {
   openBookingButton.addEventListener("click", showBookingPanel);
 }
 
+if (window.location.hash === "#booking") {
+  showBookingPanel();
+}
+
 if (bookingBackButton) {
   bookingBackButton.addEventListener("click", hideBookingPanel);
 }
@@ -309,10 +315,10 @@ if (bookingForm) {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Booking could not be submitted.");
+        throw new Error(data.error || "Inquiry could not be submitted.");
       }
 
-      alert("Booking submitted successfully.");
+      alert("Inquiry submitted successfully.");
       bookingForm.reset();
       updateBookingSubmissionTitle(bookingForm);
     } catch (error) {
@@ -331,9 +337,9 @@ if (emailBookingButton && bookingForm) {
     if (!bookingForm.reportValidity()) return;
 
     const summary = getBookingSummary(bookingForm);
-    const subject = encodeURIComponent(updateBookingSubmissionTitle(bookingForm) || "Pr1me Tutorial Services Booking Inquiry");
+    const subject = encodeURIComponent(updateBookingSubmissionTitle(bookingForm) || "Pr1me Tutorial Services Inquiry");
     const body = encodeURIComponent(summary);
-    window.location.href = `mailto:ljairamirez@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:ljairamirez@gmail.com,glaurenciano@gmail.com?subject=${subject}&body=${body}`;
   });
 }
 
@@ -345,7 +351,7 @@ if (facebookBookingButton && bookingForm) {
 
     try {
       await navigator.clipboard.writeText(summary);
-      alert("Booking summary copied. Paste it into your Facebook message to Pr1me.");
+      alert("Inquiry summary copied. Paste it into your Facebook message to Pr1me.");
     } catch {
       alert(summary);
     }
@@ -369,17 +375,17 @@ const pr1meFaqAnswers = [
   {
     keywords: ["service", "offer", "offered", "tutorial", "class"],
     answer:
-      "Pr1me offers One-on-One Tutorial, Small Group Tutorial, Examination Reviews, DOST Review, Booster Program, and Level Enhancement and Advancement Program (LEAP). You can view and book them on the Services page.",
+      "Pr1me offers One-on-One Tutorial, Regular Group Tutorial, Study-Buddy Tutoring, PSHS 7 Regular Group Tutoring, Examination Reviews, DOST Review, Booster Program, and LEAP. You can view services, send an inquiry, or open the booking page from the Services page.",
   },
   {
     keywords: ["program", "current", "promotion", "summer", "leap", "booster"],
     answer:
-      "Current programs shown on the site include LEAP, Booster Program, review programs, and other promotions or announcements that can be added on the home page.",
+      "Current programs shown on the site include PSHS 7 Regular Group Tutoring, Study-Buddy Tutoring, and One-on-One Tutoring.",
   },
   {
     keywords: ["book", "booking", "reserve", "schedule", "avail", "form"],
     answer:
-      "To book, open the Services page and click Book a Service. You can submit the website form, send the details by email, or inquire through the Pr1me Facebook page.",
+      "To book, open the Book a Service page. For general questions, use the Inquiry button on the Services page, Send via Email, or Inquire on Facebook.",
   },
   {
     keywords: ["where", "located", "location", "address", "map", "maps", "maginhawa"],
@@ -394,12 +400,12 @@ const pr1meFaqAnswers = [
   {
     keywords: ["facebook", "fb", "message", "messenger", "inquire"],
     answer:
-      "You can inquire through the Pr1me Facebook page here: https://www.facebook.com/PR1ME.ts/. The Services booking form also has an Inquire on Facebook option.",
+      "You can inquire through the Pr1me Facebook page here: https://www.facebook.com/PR1ME.ts/. The Services inquiry form also has an Inquire on Facebook option.",
   },
   {
     keywords: ["online", "face", "hybrid", "onsite", "in person", "f2f"],
     answer:
-      "Yes. One-on-One Tutorial, Small Group Tutorial, Examination Reviews, and DOST Review can be Online or Face-to-Face. Booster is listed as Online, while LEAP is listed as Hybrid.",
+      "Yes. One-on-One Tutorial, Regular Group Tutorial, Study-Buddy Tutoring, Examination Reviews, and DOST Review can be Online or Face-to-Face. Booster is listed as Online, while LEAP is listed as Hybrid.",
   },
   {
     keywords: ["tutor", "teacher", "subjects", "math", "science", "physics", "chemistry"],
@@ -409,7 +415,7 @@ const pr1meFaqAnswers = [
   {
     keywords: ["rate", "price", "fee", "cost", "payment"],
     answer:
-      "Rates are not listed on the website right now. Please use the booking form, email, call button, or Facebook page so Pr1me can confirm the correct details.",
+      "Rates are not listed on the website right now. Please use the inquiry form, email, call button, or Facebook page so Pr1me can confirm the correct details.",
   },
 ];
 
