@@ -211,8 +211,86 @@ const bookingBackButton = document.querySelector("[data-booking-back]");
 const bookingForm = document.querySelector("[data-booking-form]");
 const emailBookingButton = document.querySelector("[data-email-booking]");
 const facebookBookingButton = document.querySelector("[data-facebook-booking]");
+const rateOutput = document.querySelector("[data-rate-output]");
 const isNetlifyHost = window.location.hostname.includes("netlify");
 const useVercelBooking = !isNetlifyHost && window.location.protocol !== "file:";
+
+const tutoringRateTable = {
+  "5 hours": {
+    online: {
+      elemJhs: "PHP 4,500",
+      shs: "PHP 5,000",
+      college: "PHP 5,500",
+    },
+    faceToFace: {
+      elemJhs: "PHP 5,000",
+      shs: "PHP 5,500",
+      college: "PHP 6,000",
+    },
+  },
+  "10 hours": {
+    online: {
+      elemJhs: "PHP 7,000",
+      shs: "PHP 8,000",
+      college: "PHP 9,000",
+    },
+    faceToFace: {
+      elemJhs: "PHP 8,000",
+      shs: "PHP 9,000",
+      college: "PHP 9,500",
+    },
+  },
+  "15 hours": {
+    online: {
+      elemJhs: "PHP 8,500",
+      shs: "PHP 9,500",
+      college: "PHP 10,500",
+    },
+    faceToFace: {
+      elemJhs: "PHP 9,500",
+      shs: "PHP 10,500",
+      college: "PHP 11,500",
+    },
+  },
+};
+
+function getGradeCategory(value) {
+  const normalized = String(value || "").trim().toLowerCase();
+
+  if (!normalized) return "";
+  if (normalized.includes("college")) return "college";
+
+  const match = normalized.match(/\d+/);
+  const grade = match ? Number(match[0]) : NaN;
+
+  if (grade >= 1 && grade <= 10) return "elemJhs";
+  if (grade === 11 || grade === 12) return "shs";
+  return "";
+}
+
+function getRateMode(value) {
+  const normalized = String(value || "").trim().toLowerCase();
+
+  if (normalized === "online") return "online";
+  if (normalized === "face-to-face" || normalized === "mixed") return "faceToFace";
+  return "";
+}
+
+function updateTutoringRate() {
+  if (!bookingForm || !rateOutput) return;
+
+  const category = getGradeCategory(bookingForm.querySelector('[name="grade-level"]')?.value);
+  const mode = getRateMode(bookingForm.querySelector('[name="mode"]')?.value);
+  const selectedPackage = bookingForm.querySelector('[name="package"]')?.value;
+
+  if (!category || !mode || !selectedPackage) {
+    rateOutput.value = "";
+    rateOutput.placeholder = "Select package, grade level, and mode";
+    return;
+  }
+
+  rateOutput.value = tutoringRateTable[selectedPackage]?.[mode]?.[category] || "";
+}
 
 function showBookingPanel() {
   if (!bookingPanel) return;
@@ -261,6 +339,7 @@ function getBookingPayload(form) {
     service: form.querySelector('[name="service"]')?.value.trim() || "",
     package: form.querySelector('[name="package"]')?.value.trim() || "",
     mode: form.querySelector('[name="mode"]')?.value.trim() || "",
+    tutoringRate: form.querySelector('[name="tutoring-rate"]')?.value.trim() || "",
     preferredTutorSubjects: form.querySelector('[name="preferred-tutor-subjects"]')?.value.trim() || "",
     preferredSchedule: form.querySelector('[name="preferred-schedule"]')?.value.trim() || "",
     notes: form.querySelector('[name="notes"]')?.value.trim() || "",
@@ -296,10 +375,18 @@ if (bookingBackButton) {
 }
 
 if (bookingForm) {
-  bookingForm.addEventListener("input", () => updateBookingSubmissionTitle(bookingForm));
-  bookingForm.addEventListener("change", () => updateBookingSubmissionTitle(bookingForm));
+  updateTutoringRate();
+  bookingForm.addEventListener("input", () => {
+    updateBookingSubmissionTitle(bookingForm);
+    updateTutoringRate();
+  });
+  bookingForm.addEventListener("change", () => {
+    updateBookingSubmissionTitle(bookingForm);
+    updateTutoringRate();
+  });
   bookingForm.addEventListener("submit", async (event) => {
     updateBookingSubmissionTitle(bookingForm);
+    updateTutoringRate();
 
     if (!useVercelBooking) return;
 

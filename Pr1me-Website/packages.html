@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="I6XLdQHyW04NE64osFrF8heph37wOxYCarYntX9Nutw">
-  <title>Services | Pr1me Tutorial Services</title>
+  <title>Pr1me Tutorial Services</title>
+  <link rel="icon" type="image/jpeg" href="Assets/PrimeLogo.jpg">
   <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="packages">
@@ -23,7 +24,10 @@
     <nav class="nav-shell" aria-label="Main navigation">
       <a class="brand" href="index.html" aria-label="Pr1me Tutorial Services home">
         <img class="brand-logo" src="Assets/PrimeLogo.jpg" alt="Pr1me logo">
-        <span>Pr1me Tutor Log</span>
+        <span>
+          <strong>Pr1me</strong>
+          <small>Tutorial Services</small>
+        </span>
       </a>
 
       <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
@@ -157,6 +161,10 @@
             <label>Do not fill this out: <input name="bot-field"></label>
           </p>
           <p class="form-note">Fields marked with * are required.</p>
+          <div class="booking-resource-row">
+            <a class="button secondary small-button" href="Assets/Pr1me_TandC.pdf" target="_blank" rel="noreferrer">View Terms and Conditions</a>
+            <button class="button secondary small-button" type="button" title="Payment option files can be linked here once attached." disabled>View Payment Options</button>
+          </div>
 
           <div class="form-grid">
             <label>
@@ -212,6 +220,11 @@
                 <option>Face-to-Face</option>
                 <option>Mixed</option>
               </select>
+            </label>
+
+            <label class="rate-field">
+              Tutoring Rate
+              <input type="text" name="tutoring-rate" data-summary-label="Tutoring Rate" data-rate-output readonly title="Rate is filtered by grade level and mode. Mixed follows the face-to-face rate. Type College in Grade Level for college rate.">
             </label>
           </div>
 

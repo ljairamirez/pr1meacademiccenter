@@ -25,6 +25,7 @@ function buildBookingSummary(data) {
     ["Service", data.service],
     ["Package", data.package],
     ["Mode", data.mode],
+    ["Tutoring Rate", data.tutoringRate],
     ["Preferred Tutor and/or Subjects", data.preferredTutorSubjects],
     ["Preferred Schedule", data.preferredSchedule],
     ["Notes", data.notes],
