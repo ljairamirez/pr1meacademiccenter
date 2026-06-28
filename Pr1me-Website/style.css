@@ -233,17 +233,18 @@ a {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 5px;
 }
 
 .nav-links a {
-  min-height: 34px;
+  min-height: 32px;
   display: inline-flex;
   align-items: center;
-  padding: 0 10px;
-  border-radius: 8px;
+  padding: 0 9px;
+  border-radius: 7px;
   color: rgba(255, 255, 255, 0.88);
-  font-weight: 700;
+  font-size: 0.9rem;
+  font-weight: 800;
   transition: color 0.22s ease, background-color 0.22s ease, transform 0.22s ease;
 }
 
@@ -266,8 +267,8 @@ a {
 }
 
 .menu-toggle {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   display: none;
   place-items: center;
   padding: 10px;
@@ -411,23 +412,24 @@ h3 {
 
 .button,
 .contact-list a {
-  min-height: 42px;
+  min-height: 38px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0 15px;
+  padding: 0 13px;
   border: 0;
-  border-radius: 8px;
+  border-radius: 7px;
   font: inherit;
+  font-size: 0.9rem;
   font-weight: 900;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .button.primary {
   color: var(--white);
   background: var(--red);
-  box-shadow: 0 12px 24px rgba(198, 40, 40, 0.24);
+  box-shadow: 0 9px 18px rgba(198, 40, 40, 0.18);
 }
 
 .button.primary:hover {
@@ -439,7 +441,7 @@ h3 {
 .contact-list a {
   color: var(--red-dark);
   background: var(--orange-soft);
-  border-color: rgba(143, 21, 21, 0.24);
+  border: 1px solid rgba(143, 21, 21, 0.18);
 }
 
 .button.secondary:hover,
@@ -527,8 +529,8 @@ h3 {
   border: 1px solid var(--line);
   border-radius: 8px;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 244, 236, 0.88)),
-    url("Assets/testimonial_bg.png") center / cover no-repeat;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(255, 238, 226, 0.66)),
+    url("Assets/testimonial_bg.png") center / 150px auto repeat;
   box-shadow: var(--shadow);
 }
 
@@ -616,8 +618,8 @@ h3 {
   border: 1px solid rgba(198, 40, 40, 0.16);
   border-radius: 8px;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.58), rgba(255, 240, 228, 0.42)),
-    url("Assets/testimonial_bg.png") center / 190px auto repeat;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.42), rgba(255, 232, 216, 0.28)),
+    url("Assets/testimonial_bg.png") center / 150px auto repeat;
   box-shadow: var(--shadow);
 }
 
@@ -705,30 +707,32 @@ textarea::placeholder {
   display: flex;
   align-items: end;
   justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 18px;
+  gap: 14px;
+  margin-bottom: 16px;
 }
 
 .search-box {
-  width: min(460px, 100%);
+  width: min(420px, 100%);
   display: grid;
-  gap: 8px;
+  gap: 6px;
   color: var(--muted);
-  font-weight: 800;
+  font-size: 0.86rem;
+  font-weight: 850;
 }
 
 .tool-actions {
   display: flex;
   align-items: end;
-  gap: 12px;
+  gap: 10px;
 }
 
 .sort-box {
-  width: 160px;
+  width: 150px;
   display: grid;
-  gap: 8px;
+  gap: 6px;
   color: var(--muted);
-  font-weight: 800;
+  font-size: 0.86rem;
+  font-weight: 850;
 }
 
 input,
@@ -736,10 +740,11 @@ select,
 textarea {
   width: 100%;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 13px 14px;
+  border-radius: 7px;
+  padding: 10px 12px;
   color: var(--ink);
   font: inherit;
+  font-size: 0.92rem;
   background: var(--white);
   outline: none;
 }
@@ -748,30 +753,32 @@ input:focus,
 select:focus,
 textarea:focus {
   border-color: var(--orange);
-  box-shadow: 0 0 0 4px rgba(255, 122, 26, 0.15);
+  box-shadow: 0 0 0 3px rgba(255, 122, 26, 0.13);
 }
 
 .view-switch,
 .package-tabs {
   display: flex;
-  gap: 6px;
-  padding: 5px;
+  gap: 4px;
+  padding: 4px;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 7px;
   background: var(--orange-soft);
 }
 
 .view-switch button,
 .package-tabs button {
-  min-height: 34px;
-  padding: 0 12px;
+  min-height: 31px;
+  padding: 0 10px;
   border: 0;
-  border-radius: 7px;
+  border-radius: 6px;
   color: var(--black);
   background: transparent;
   font: inherit;
+  font-size: 0.84rem;
   font-weight: 900;
   cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
 .view-switch button.active,
@@ -876,7 +883,7 @@ textarea:focus {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 14px;
+  margin-bottom: 13px;
 }
 
 .promo-grid {
@@ -947,8 +954,8 @@ textarea:focus {
   border: 1px solid var(--line);
   border-radius: 8px;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 239, 228, 0.88)),
-    url("Assets/testimonial_bg.png") center / cover no-repeat;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.74), rgba(255, 235, 222, 0.62)),
+    url("Assets/testimonial_bg.png") center / 150px auto repeat;
   box-shadow: var(--shadow);
 }
 
@@ -977,16 +984,16 @@ textarea:focus {
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-end;
-  gap: 8px;
+  gap: 7px;
   padding-top: 8px;
   border-top: 1px solid rgba(143, 21, 21, 0.12);
 }
 
 .booking-actions .button.primary {
   margin-right: auto;
-  min-height: 40px;
-  padding: 0 18px;
-  font-size: 0.9rem;
+  min-height: 38px;
+  padding: 0 16px;
+  font-size: 0.86rem;
 }
 
 .booking-actions .button.primary:hover {
@@ -994,12 +1001,12 @@ textarea:focus {
 }
 
 .booking-actions .button.secondary {
-  min-height: 34px;
-  padding: 0 11px;
+  min-height: 32px;
+  padding: 0 10px;
   color: var(--black);
   background: var(--orange-soft);
   border: 1px solid var(--line);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
 }
 
 .booking-actions .button.secondary:hover {
@@ -1031,8 +1038,8 @@ textarea:focus {
   border: 1px solid var(--line);
   border-radius: 8px;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 240, 228, 0.9)),
-    url("Assets/testimonial_bg.png") center / cover no-repeat;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.74), rgba(255, 235, 222, 0.62)),
+    url("Assets/testimonial_bg.png") center / 150px auto repeat;
   box-shadow: var(--shadow);
 }
 
@@ -1065,8 +1072,8 @@ textarea:focus {
   border: 1px solid var(--line);
   border-radius: 8px;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 224, 203, 0.82)),
-    url("Assets/testimonial_bg.png") center / cover no-repeat;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 232, 216, 0.6)),
+    url("Assets/testimonial_bg.png") center / 150px auto repeat;
   box-shadow: var(--shadow);
 }
 
@@ -1152,8 +1159,8 @@ textarea:focus {
 .text-feedback-card {
   min-height: 170px;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 224, 203, 0.58)),
-    url("Assets/testimonial_bg.png") center / cover no-repeat;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.52), rgba(255, 226, 207, 0.38)),
+    url("Assets/testimonial_bg.png") center / 145px auto repeat;
 }
 
 .booking-form {
@@ -1162,8 +1169,8 @@ textarea:focus {
   padding: 16px;
   border-radius: 8px;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.84), rgba(255, 247, 242, 0.9)),
-    url("Assets/testimonial_bg.png") center / 220px auto repeat;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.66), rgba(255, 241, 232, 0.72)),
+    url("Assets/testimonial_bg.png") center / 150px auto repeat;
 }
 
 .booking-form label {
@@ -1181,18 +1188,18 @@ textarea:focus {
 .booking-form input,
 .booking-form select,
 .booking-form textarea {
-  min-height: 38px;
+  min-height: 36px;
   border-color: rgba(143, 21, 21, 0.16);
   border-radius: 7px;
-  padding: 9px 11px;
+  padding: 8px 10px;
   color: var(--ink);
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   line-height: 1.35;
   background: rgba(255, 255, 255, 0.94);
 }
 
 .booking-form textarea {
-  min-height: 92px;
+  min-height: 84px;
   resize: vertical;
 }
 
@@ -1674,8 +1681,8 @@ textarea:focus {
     border: 1px solid var(--line);
     border-radius: 8px;
     background:
-      linear-gradient(135deg, rgba(255, 250, 247, 0.98), rgba(255, 231, 215, 0.96)),
-      url("Assets/testimonial_bg.png") center / 220px auto repeat;
+      linear-gradient(135deg, rgba(255, 250, 247, 0.76), rgba(255, 231, 215, 0.68)),
+      url("Assets/testimonial_bg.png") center / 150px auto repeat;
     box-shadow: var(--shadow);
   }
 
@@ -1824,6 +1831,18 @@ textarea:focus {
     width: 100%;
   }
 
+  .package-tabs button,
+  .view-switch button,
+  .booking-resource-row .button,
+  .booking-actions .button.secondary,
+  .terms-modal-actions .button {
+    width: auto;
+  }
+
+  .booking-actions {
+    justify-content: flex-start;
+  }
+
   .booking-actions .button.primary {
     margin-right: 0;
   }
@@ -1896,15 +1915,15 @@ textarea:focus {
 .package-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   justify-content: flex-end;
 }
 
 .small-button {
-  min-height: 38px;
+  min-height: 34px;
   width: fit-content;
-  padding: 0 13px;
-  font-size: 0.88rem;
+  padding: 0 11px;
+  font-size: 0.8rem;
 }
 
 .current-program-grid {
@@ -1927,7 +1946,7 @@ textarea:focus {
 }
 
 .promo-action-button {
-  min-width: 176px;
+  min-width: 154px;
   margin-top: auto;
   align-self: flex-start;
 }
@@ -1984,14 +2003,14 @@ textarea:focus {
 .booking-option-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
+  gap: 7px;
+  margin-top: 12px;
 }
 
 .booking-option-actions .button {
-  min-height: 36px;
-  padding: 0 12px;
-  font-size: 0.82rem;
+  min-height: 34px;
+  padding: 0 11px;
+  font-size: 0.8rem;
 }
 
 .group-option-list {
@@ -2049,23 +2068,27 @@ textarea:focus {
 /* White card boxes with testimonial background inside each box only */
 
 .current-program-card,
+.promo-card,
+.feedback-card,
 .package-card,
 .tutor-card,
 .text-feedback-card,
 .feedback-photo,
 .booking-option-card,
+.booking-form,
+.booking-panel,
 .why-panel,
 .owner-panel,
 .regular-group-copy,
 .regular-group-poster {
   background-color: #ffffff !important;
   background-image:
-    linear-gradient(rgba(255, 250, 247, 0.18), rgba(255, 250, 247, 0.18)),
+    linear-gradient(rgba(255, 250, 247, 0.08), rgba(255, 238, 229, 0.12)),
     url("Assets/testimonial_bg.png") !important;
 
   background-size:
     auto,
-    180px auto !important;
+    145px auto !important;
 
   background-position:
     center,
@@ -2090,11 +2113,11 @@ textarea:focus {
 .package-card {
   background-color: #ffffff !important;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.72)),
+    linear-gradient(rgba(255, 255, 255, 0.34), rgba(255, 239, 229, 0.28)),
     url("Assets/testimonial_bg.png") !important;
   background-size:
     auto,
-    180px auto !important;
+    145px auto !important;
   background-position:
     center,
     top left !important;
@@ -2109,8 +2132,8 @@ textarea:focus {
   justify-content: center;
   padding: 34px;
   background:
-    linear-gradient(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.18)),
-    url("Assets/testimonial_bg.png") center / 180px auto repeat;
+    linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 238, 229, 0.12)),
+    url("Assets/testimonial_bg.png") center / 145px auto repeat;
 }
 
 .regular-group-poster {
@@ -2119,8 +2142,8 @@ textarea:focus {
   overflow: hidden;
   border-left: 1px solid var(--line);
   background:
-    linear-gradient(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.18)),
-    url("Assets/testimonial_bg.png") center / 180px auto repeat;
+    linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 238, 229, 0.12)),
+    url("Assets/testimonial_bg.png") center / 145px auto repeat;
 }
 
 /* Testimonial background for the Home hero only */
