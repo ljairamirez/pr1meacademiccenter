@@ -526,6 +526,8 @@ const chatSuggestions = [
   "Do you offer online sessions?",
   "Who are the tutors?",
   "Who teaches Mathematics?",
+  "Solve 2x + 5 = 13",
+  "Explain photosynthesis",
   "How do I inquire on Facebook?",
 ];
 
@@ -586,7 +588,7 @@ const pr1meFaqAnswers = [
       "Yes. One-on-One Tutorial, Regular Group Tutorial, Study-Buddy Tutoring, Examination Reviews, and DOST-SEI Review can be Online or Face-to-Face. Booster is listed as Online, while LEAP is listed as Hybrid.",
   },
   {
-    keywords: ["tutor", "teacher", "subjects", "math", "science", "physics", "chemistry"],
+    keywords: ["tutor", "teacher", "teachers", "subjects"],
     answer:
       "The Tutors page lists Pr1me teachers and their subjects. You can search or sort tutors there by name, subject, review support, grade level, or exam topic.",
   },
@@ -600,7 +602,7 @@ const pr1meFaqAnswers = [
 const chatHistory = [
   {
     role: "assistant",
-    content: "Hi! Tap a question below or ask about Pr1me services, programs, tutors, booking, contact, or location.",
+    content: "Hi! Tap a question below or ask about Pr1me services, tutors, booking, or a school question.",
   },
 ];
 
@@ -648,6 +650,9 @@ function findTutorsBySubject(normalized) {
 }
 
 function getTutorChatReply(normalized) {
+  const isTutorInquiry = /\b(who|which|what|available|handle|handles|teach|teaches|teacher|teachers|tutor|tutors|subject|subjects)\b/.test(normalized);
+  if (!isTutorInquiry) return "";
+
   const specificTutor = findTutorByQuestion(normalized);
   if (specificTutor) {
     return `${specificTutor.name} (${specificTutor.fullName}) handles ${specificTutor.subjects.join(", ")}. Degree/program: ${specificTutor.degree}. Availability: ${specificTutor.availability}.`;
