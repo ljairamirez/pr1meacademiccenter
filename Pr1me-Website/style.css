@@ -2163,3 +2163,415 @@ textarea:focus {
     ),
     url("Assets/testimonial_bg.png") center / 170px auto repeat !important;
 }
+/* Pr1me UI polish: forms, chat, and mobile rhythm */
+.package-card,
+.booking-option-card,
+.booking-form,
+.booking-panel,
+.why-panel,
+.owner-panel,
+.regular-group-copy,
+.service-card,
+.tutor-card,
+.feedback-card,
+.text-feedback-card {
+  background-image:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.54), rgba(255, 236, 222, 0.4)),
+    url("Assets/testimonial_bg.png") !important;
+  background-position: center !important;
+  background-size: auto, 118px auto !important;
+  background-repeat: repeat !important;
+}
+
+.nav-links a,
+.nav-links .nav-cta {
+  min-height: 31px;
+  padding: 0 10px;
+  border-radius: 7px;
+  font-size: 0.86rem;
+}
+
+.nav-links a:hover,
+.nav-links a.active,
+.nav-links .nav-cta:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(-1px);
+}
+
+.booking-panel {
+  padding: 16px;
+}
+
+.booking-panel .section-heading h2 {
+  font-size: clamp(1.28rem, 1.8vw, 1.75rem);
+}
+
+.form-grid {
+  gap: 9px 10px;
+}
+
+.booking-form {
+  gap: 9px;
+  padding: 14px;
+}
+
+.booking-form label {
+  gap: 4px;
+  color: #4d403b;
+  font-size: 0.77rem;
+  font-weight: 850;
+}
+
+.booking-form input,
+.booking-form select,
+.booking-form textarea {
+  min-height: 34px;
+  padding: 7px 9px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.booking-form textarea {
+  min-height: 76px;
+}
+
+.booking-form input[type="file"] {
+  padding: 7px 9px;
+  font-size: 0.76rem;
+}
+
+.booking-form > .form-note,
+.form-note {
+  font-size: 0.76rem;
+  line-height: 1.38;
+}
+
+.form-section-label {
+  margin: 1px 0 -1px;
+  font-size: 0.7rem;
+}
+
+.booking-resource-row {
+  gap: 7px;
+  padding: 8px;
+}
+
+.booking-resource-row .button,
+.booking-actions .button.secondary,
+.terms-modal-actions .button,
+.booking-option-actions .button {
+  min-height: 30px;
+  padding: 0 10px;
+  border-radius: 6px;
+  font-size: 0.74rem;
+}
+
+.booking-actions {
+  gap: 6px;
+  padding-top: 9px;
+}
+
+.booking-actions .button.primary {
+  min-height: 36px;
+  padding: 0 15px;
+  border-radius: 7px;
+  font-size: 0.82rem;
+}
+
+.downpayment-note {
+  min-height: 30px;
+  font-size: 0.76rem;
+}
+
+.ai-chat-widget {
+  right: 16px;
+  bottom: 16px;
+  font-size: 14px;
+}
+
+.ai-chat-toggle {
+  width: 68px;
+  height: 50px;
+  min-height: 50px;
+  box-shadow: 0 12px 28px rgba(17, 17, 17, 0.22);
+}
+
+.chat-icon {
+  width: 32px;
+  height: 21px;
+  border-width: 3px;
+  border-radius: 8px;
+}
+
+.chat-icon::before {
+  bottom: -8px;
+  width: 8px;
+  height: 8px;
+}
+
+.chat-icon::after {
+  top: 7px;
+  left: 5px;
+  width: 3.5px;
+  height: 3.5px;
+  box-shadow: 8px 0 0 var(--white), 16px 0 0 var(--white);
+}
+
+.ai-chat-panel {
+  bottom: 56px;
+  width: min(342px, calc(100vw - 24px));
+  border-radius: 8px;
+}
+
+.ai-chat-header {
+  gap: 10px;
+  padding: 12px 13px;
+}
+
+.ai-chat-header .eyebrow {
+  margin-bottom: 2px;
+  font-size: 0.72rem;
+}
+
+.ai-chat-subtitle {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.78rem;
+  line-height: 1.28;
+}
+
+.ai-chat-header button {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  font-size: 1rem;
+}
+
+.ai-chat-messages {
+  max-height: 252px;
+  gap: 8px;
+  padding: 12px;
+  background:
+    linear-gradient(135deg, rgba(255, 250, 247, 0.84), rgba(255, 239, 229, 0.72)),
+    url("Assets/testimonial_bg.png") center / 120px auto repeat;
+}
+
+.ai-chat-message {
+  max-width: 88%;
+  padding: 8px 10px;
+  border-radius: 7px;
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.ai-chat-suggestion-block {
+  padding: 0 12px 10px;
+  background:
+    linear-gradient(135deg, rgba(255, 250, 247, 0.84), rgba(255, 239, 229, 0.72)),
+    url("Assets/testimonial_bg.png") center / 120px auto repeat;
+}
+
+.ai-chat-suggestion-block > p {
+  margin: 0 0 6px;
+  color: var(--red-dark);
+  font-size: 0.68rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.ai-chat-suggestions {
+  gap: 6px;
+  padding: 0 0 2px;
+  background: transparent;
+}
+
+.ai-chat-suggestions button {
+  min-height: 30px;
+  padding: 5px 8px;
+  border-color: rgba(143, 21, 21, 0.14);
+  border-radius: 999px;
+  color: var(--red-dark);
+  background: rgba(255, 237, 222, 0.92);
+  font-size: 0.74rem;
+  font-weight: 850;
+}
+
+.ai-chat-suggestions button:hover {
+  background: #ffe2cc;
+}
+
+.ai-chat-form {
+  gap: 7px;
+  padding: 10px;
+}
+
+.ai-chat-form input {
+  min-height: 38px;
+  padding: 7px 10px;
+  border-radius: 7px;
+  font-size: 0.82rem;
+}
+
+.ai-chat-form button {
+  min-height: 38px;
+  padding: 0 12px;
+  border-radius: 7px;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 900px) {
+  .nav-links {
+    background:
+      linear-gradient(135deg, rgba(255, 244, 235, 0.9), rgba(255, 219, 194, 0.82)),
+      url("Assets/testimonial_bg.png") center / 120px auto repeat;
+  }
+
+  .nav-links a,
+  .nav-links .nav-cta {
+    color: var(--red-dark);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 236, 221, 0.82));
+    border: 1px solid rgba(143, 21, 21, 0.14);
+    box-shadow: 0 6px 14px rgba(143, 21, 21, 0.06);
+  }
+}
+
+@media (max-width: 560px) {
+  h1 {
+    font-size: 2.05rem;
+  }
+
+  h2 {
+    font-size: 1.55rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  .hero-copy,
+  .section-heading p,
+  .owner-panel p,
+  .package-card p,
+  .tutor-card p {
+    font-size: 0.92rem;
+  }
+
+  .button,
+  .contact-list a {
+    min-height: 36px;
+    font-size: 0.84rem;
+  }
+
+  .booking-panel,
+  .booking-form {
+    padding: 13px;
+  }
+
+  .booking-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .booking-actions .button,
+  .booking-resource-row .button {
+    width: 100%;
+  }
+
+  .ai-chat-widget {
+    right: 10px;
+    bottom: 10px;
+  }
+
+  .ai-chat-panel {
+    bottom: 54px;
+    width: min(330px, calc(100vw - 20px));
+  }
+
+  .ai-chat-messages {
+    max-height: 230px;
+  }
+}
+
+.tool-row,
+.package-toolbar,
+.section-heading.compact {
+  gap: 12px;
+}
+
+.tool-row label,
+.sort-box label,
+.booking-form label {
+  letter-spacing: 0;
+}
+
+.tool-row input,
+.tool-row select,
+.sort-box select,
+.package-toolbar select,
+.package-toolbar input {
+  min-height: 36px;
+  padding: 7px 10px;
+  border-radius: 7px;
+  font-size: 0.84rem;
+}
+
+.package-tabs button,
+.view-switch button {
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 7px;
+  font-size: 0.82rem;
+}
+
+.package-card,
+.booking-option-card,
+.tutor-card,
+.feedback-card {
+  border-color: rgba(143, 21, 21, 0.16);
+}
+
+.package-card h3,
+.booking-option-card h3,
+.tutor-card h3 {
+  font-size: 1.03rem;
+  line-height: 1.2;
+}
+
+.package-card p,
+.booking-option-card p,
+.tutor-card p,
+.feedback-card p {
+  font-size: 0.9rem;
+}
+
+.ai-chat-form input:disabled,
+.ai-chat-form button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+@media (max-width: 560px) {
+  .tool-row input,
+  .tool-row select,
+  .sort-box select,
+  .package-toolbar select,
+  .package-toolbar input {
+    min-height: 38px;
+    font-size: 0.86rem;
+  }
+
+  .package-tabs button,
+  .view-switch button {
+    font-size: 0.8rem;
+  }
+
+  .package-card,
+  .booking-option-card,
+  .tutor-card,
+  .feedback-card {
+    padding: 15px;
+  }
+}
+/* End Pr1me UI polish */

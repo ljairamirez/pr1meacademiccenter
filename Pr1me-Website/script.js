@@ -711,13 +711,17 @@ function createChatWidget() {
       <div class="ai-chat-header">
         <div>
           <p class="eyebrow">Pr1me Assistant</p>
+          <p class="ai-chat-subtitle">Ask about Pr1me, tutors, booking, or school topics.</p>
         </div>
         <button type="button" aria-label="Close AI chat" data-chat-close>&times;</button>
       </div>
       <div class="ai-chat-messages" aria-live="polite"></div>
-      <div class="ai-chat-suggestions"></div>
+      <div class="ai-chat-suggestion-block">
+        <p>Quick questions</p>
+        <div class="ai-chat-suggestions"></div>
+      </div>
       <form class="ai-chat-form">
-        <input type="text" name="chat-message" placeholder="Ask a question" autocomplete="off" required>
+        <input type="text" name="chat-message" placeholder="Ask Pr1me or a school question" autocomplete="off" required>
         <button type="submit">Send</button>
       </form>
     </div>
@@ -733,6 +737,7 @@ function addChatMessage(container, role, text) {
   message.textContent = text;
   container.appendChild(message);
   container.scrollTop = container.scrollHeight;
+  return message;
 }
 
 function setupChatWidget() {
@@ -744,6 +749,13 @@ function setupChatWidget() {
   const suggestions = widget.querySelector(".ai-chat-suggestions");
   const form = widget.querySelector(".ai-chat-form");
   const input = form.querySelector("input");
+  const submitButton = form.querySelector("button");
+
+  function setChatBusy(isBusy) {
+    input.disabled = isBusy;
+    submitButton.disabled = isBusy;
+    submitButton.textContent = isBusy ? "Wait" : "Send";
+  }
 
   chatHistory.forEach((message) => addChatMessage(messages, message.role, message.content));
 
@@ -783,14 +795,17 @@ function setupChatWidget() {
       return;
     }
 
-    addChatMessage(messages, "assistant", "Typing...");
-    const typingMessage = messages.lastElementChild;
+    const typingMessage = addChatMessage(messages, "assistant", "Pr1me Assistant is thinking...");
+    setChatBusy(true);
 
     try {
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 18000);
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: chatHistory.slice(-8) }),
+        body: JSON.stringify({ messages: chatHistory.slice(-10) }),
+        signal: controller.signal,
       };
       let response = await fetch("/api/chat", requestOptions);
 
@@ -798,12 +813,16 @@ function setupChatWidget() {
         response = await fetch("/.netlify/functions/chat", requestOptions);
       }
 
-      const data = await response.json();
+      window.clearTimeout(timeout);
+      const data = await response.json().catch(() => ({}));
       const reply = data.reply || data.error || "The AI chat is not available right now.";
       typingMessage.textContent = reply;
       chatHistory.push({ role: "assistant", content: reply });
     } catch {
       typingMessage.textContent = "The AI chat is not available yet. Please contact Pr1me through Facebook or email.";
+    } finally {
+      setChatBusy(false);
+      input.focus();
     }
   });
 }
