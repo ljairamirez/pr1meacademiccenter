@@ -2574,4 +2574,573 @@ textarea:focus {
     padding: 15px;
   }
 }
+
+.booking-service-section .section-heading {
+  margin-bottom: 16px;
+}
+
+.booking-program-card {
+  padding: 14px;
+}
+
+.booking-program-card .booking-option-copy {
+  display: grid;
+  align-content: start;
+}
+
+.booking-poster-top {
+  aspect-ratio: 16 / 8.2;
+  display: grid;
+  place-items: center;
+  background: #fffaf7;
+}
+
+.booking-poster-top img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.booking-option-card .button.primary {
+  background: var(--red);
+}
+
+.booking-option-card .button.primary:hover {
+  background: #e45132;
+}
+
+@media (max-width: 900px) {
+  .booking-program-card {
+    min-height: auto;
+  }
+}
+
+.booking-option-grid {
+  align-items: stretch;
+}
+
+.booking-program-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 12px;
+  padding: 12px;
+}
+
+.booking-program-card .booking-option-copy {
+  min-height: 190px;
+  align-content: start;
+}
+
+.booking-program-card .booking-option-actions {
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.booking-program-card .package-type {
+  margin-bottom: 4px;
+}
+
+.booking-program-card h3 {
+  margin-bottom: 6px;
+}
+
+.booking-program-card p:not(.package-type) {
+  max-width: 95%;
+  margin-bottom: 0;
+  line-height: 1.42;
+}
+
+.booking-poster-top {
+  aspect-ratio: 16 / 7.5;
+  padding: 0;
+}
+
+.booking-poster-top img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.booking-program-card .button.primary {
+  width: auto;
+  min-width: 150px;
+}
+
+@media (max-width: 900px) {
+  .booking-program-card .booking-option-copy {
+    min-height: auto;
+  }
+
+  .booking-poster-top {
+    aspect-ratio: 16 / 8.2;
+  }
+}
+
+.booking-option-grid {
+  align-items: start;
+}
+
+.booking-program-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 14px;
+  min-height: 0;
+  height: auto;
+  padding: 12px;
+}
+
+.booking-program-card .booking-option-copy {
+  min-height: 0;
+  display: block;
+}
+
+.booking-program-card .booking-option-actions {
+  margin-top: 14px;
+  padding-top: 0;
+}
+
+.booking-poster-top {
+  aspect-ratio: 16 / 7.9;
+  padding: 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.booking-poster-top img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: #fff;
+}
+
+.booking-program-card p:not(.package-type) {
+  max-width: none;
+  line-height: 1.38;
+}
+
+.booking-program-card .button.primary {
+  min-width: 0;
+  min-height: 34px;
+  padding: 0 14px;
+}
+
+/* Unified section color rhythm */
+body {
+  background:
+    linear-gradient(180deg, #fff7f1 0%, #fff1e9 44%, #fff8f3 100%);
+}
+
+main {
+  background:
+    linear-gradient(180deg, rgba(255, 247, 241, 0.95) 0%, rgba(255, 241, 232, 0.92) 48%, rgba(255, 248, 243, 0.96) 100%),
+    url("Assets/testimonial_bg.png") center / 150px auto repeat;
+}
+
+.hero,
+.home-hero,
+.promo-section,
+.center-section,
+.packages-section,
+.booking-service-section,
+.about-page-section,
+.tutor-section {
+  background: transparent !important;
+}
+
+.home-hero {
+  min-height: calc(100vh - 62px);
+}
+
+.section {
+  position: relative;
+}
+
+.promo-section,
+.center-section,
+.packages-section,
+.booking-service-section {
+  padding-top: 42px;
+  padding-bottom: 42px;
+}
+
+.section-heading .eyebrow,
+.package-type {
+  color: var(--red);
+}
+
+.current-program-card,
+.promo-card,
+.package-card,
+.service-card,
+.booking-option-card,
+.booking-form,
+.booking-panel,
+.owner-panel,
+.why-panel,
+.feedback-card,
+.text-feedback-card,
+.tutor-card {
+  border-color: rgba(155, 33, 28, 0.18) !important;
+  background-color: #fffaf6 !important;
+  background-image:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.74), rgba(255, 236, 223, 0.5)),
+    url("Assets/testimonial_bg.png") !important;
+  background-position: center !important;
+  background-size: auto, 128px auto !important;
+  box-shadow: 0 14px 36px rgba(90, 36, 24, 0.09) !important;
+}
+
+.booking-poster,
+.promo-photo,
+.poster-photo,
+.tutor-photo,
+.owner-photo,
+.why-photo {
+  border-color: rgba(155, 33, 28, 0.16) !important;
+  background: #fffaf6 !important;
+}
+
+.booking-poster img,
+.promo-photo img,
+.poster-photo img {
+  background: #fffaf6;
+}
+
+.group-option-list span,
+.booking-resource-row,
+.booking-form > .form-note {
+  border-color: rgba(155, 33, 28, 0.16);
+  background: rgba(255, 244, 236, 0.86);
+}
+
+.button.secondary,
+.contact-list a,
+.nav-links a,
+.nav-links .nav-cta {
+  border-color: rgba(155, 33, 28, 0.16);
+}
+
+.booking-option-card .button.primary,
+.promo-action-button,
+.booking-actions .button.primary {
+  background: linear-gradient(135deg, var(--red), #db3f2b) !important;
+  box-shadow: 0 10px 20px rgba(198, 40, 40, 0.16);
+}
+
+.booking-option-card .button.primary:hover,
+.promo-action-button:hover,
+.booking-actions .button.primary:hover {
+  background: linear-gradient(135deg, #e04a32, var(--orange)) !important;
+}
+
+.page-ribbon {
+  background:
+    linear-gradient(135deg, rgba(33, 27, 25, 0.2), rgba(155, 33, 28, 0.96) 56%, rgba(255, 122, 26, 0.94)),
+    url("Assets/testimonial_bg.png") center / 140px auto repeat,
+    linear-gradient(90deg, var(--black), var(--red), var(--orange));
+}
+
+@media (max-width: 560px) {
+  .promo-section,
+  .center-section,
+  .packages-section,
+  .booking-service-section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+}
+
+/* Booking card containment cleanup */
+.booking-option-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.booking-option-card {
+  overflow: hidden;
+  padding: 0 !important;
+  border-radius: 10px;
+  background-color: #fffaf6 !important;
+}
+
+.booking-program-card {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 0;
+}
+
+.booking-program-card .booking-option-copy,
+.featured-booking-option .booking-option-copy {
+  padding: 18px;
+}
+
+.booking-program-card .booking-option-copy {
+  display: flex;
+  min-height: 206px;
+  flex-direction: column;
+}
+
+.booking-program-card .booking-option-actions {
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.booking-poster,
+.booking-poster-top {
+  width: 100%;
+  overflow: hidden;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: #fff !important;
+  box-shadow: none !important;
+}
+
+.booking-poster-top {
+  aspect-ratio: 16 / 7.2;
+}
+
+.booking-poster img,
+.booking-poster-top img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+  border: 0;
+  border-radius: 0;
+  background: #fff;
+}
+
+.featured-booking-option {
+  align-items: stretch;
+  padding: 0 !important;
+}
+
+.featured-booking-option .booking-poster {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.featured-booking-option .booking-poster img {
+  height: 100%;
+  object-fit: contain;
+}
+
+.booking-option-card .package-type {
+  margin-bottom: 6px;
+}
+
+.booking-option-card h3 {
+  margin-bottom: 8px;
+}
+
+.booking-option-card p:not(.package-type) {
+  margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .booking-option-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-program-card .booking-option-copy {
+    min-height: 0;
+  }
+
+  .featured-booking-option .booking-poster {
+    min-height: 0;
+  }
+
+  .featured-booking-option .booking-poster img {
+    height: auto;
+  }
+}
+
+/* Booking final layout: only top cards are poster cards; group cards keep old framed style */
+.booking-option-grid {
+  align-items: start;
+}
+
+.booking-program-card {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  height: auto;
+  min-height: 0;
+  padding: 0 !important;
+  border-radius: 8px;
+}
+
+.booking-program-card .booking-poster-top {
+  width: 100%;
+  aspect-ratio: auto;
+  display: block;
+  overflow: hidden;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: #fff !important;
+}
+
+.booking-program-card .booking-poster-top img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+  border: 0;
+  border-radius: 0;
+}
+
+.booking-program-card .booking-option-copy {
+  min-height: 0;
+  display: block;
+  padding: 16px;
+}
+
+.booking-program-card .booking-option-actions {
+  margin-top: 14px;
+  padding-top: 0;
+}
+
+.booking-program-card p:not(.package-type) {
+  max-width: none;
+  line-height: 1.42;
+}
+
+.booking-program-card .button.primary {
+  width: auto;
+  min-width: 0;
+  min-height: 36px;
+  padding: 0 15px;
+}
+
+.featured-booking-option {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
+  align-items: center;
+  gap: 14px;
+  padding: 17px !important;
+  overflow: visible;
+}
+
+.featured-booking-option .booking-option-copy {
+  padding: 0;
+}
+
+.featured-booking-option .booking-poster {
+  min-height: 0;
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--line) !important;
+  border-radius: 8px !important;
+  background: linear-gradient(135deg, var(--orange-soft), var(--white)) !important;
+}
+
+.featured-booking-option .booking-poster img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+}
+
+@media (max-width: 900px) {
+  .featured-booking-option {
+    grid-column: span 1;
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Study-Buddy booking card only */
+.study-buddy-booking-card {
+  align-self: start;
+}
+
+.study-buddy-booking-poster {
+  aspect-ratio: 16 / 7.8 !important;
+  display: grid !important;
+  place-items: center;
+  background: #fff !important;
+}
+
+.study-buddy-booking-poster img {
+  width: 100%;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  background: #fff;
+}
+
+.study-buddy-booking-card .booking-option-copy {
+  padding-top: 15px;
+}
+
+.study-buddy-booking-card p:not(.package-type) {
+  max-width: 98%;
+}
+
+/* Final Study-Buddy alignment: match One-on-One card height */
+.study-buddy-booking-poster {
+  aspect-ratio: 16 / 6.85 !important;
+  overflow: hidden !important;
+}
+
+.study-buddy-booking-poster img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+/* Study-Buddy poster: show full design like One-on-One */
+.study-buddy-booking-poster {
+  aspect-ratio: auto !important;
+  display: block !important;
+  overflow: visible !important;
+}
+
+.study-buddy-booking-poster img {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+}
+
+.feedback-role {
+  color: inherit;
+  font-style: italic;
+  font-weight: 500;
+  opacity: 0.78;
+}
+
+/* Align top booking cards without changing One-on-One image */
+.booking-option-grid {
+  align-items: stretch;
+}
+
+.booking-program-card {
+  height: 100%;
+}
+
+.booking-program-card .booking-option-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.booking-program-card .booking-option-actions {
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.study-buddy-booking-card {
+  height: 100%;
+}
 /* End Pr1me UI polish */
