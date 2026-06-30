@@ -548,6 +548,7 @@ const tutorDirectory = [
   { name: "Teacher Steph", fullName: "Stephanie U. Cruz", subjects: ["Mathematics", "Physics", "Biology"], degree: "B Secondary Education Major in Mathematics Minor in Science", availability: "Tuesday and Thursday (5-9 pm), Saturday and Sunday (1-7 pm)" },
   { name: "Teacher Cedie", fullName: "Sean Cedrick J. Gavilan", subjects: ["Mathematics", "Language Proficiency", "Reading Comprehension"], degree: "BS Computer Engineering", availability: "MTWThF (7am - 10am) & (7pm - 10pm)" },
   { name: "Teacher Saree", fullName: "Saree Evidente", subjects: ["Subject TBA"], degree: "Details to be added soon", availability: "TBA" },
+  { name: "Teacher Therese", fullName: "Vince Therese Turqueza", subjects: ["English", "Filipino", "Social Science"], degree: "III - B Library and Information Science", availability: "Tuesday to Saturday, 10AM - 8PM" },
   { name: "Teacher Root", fullName: "Reuter Dave Aquino", subjects: ["Physics", "Mathematics", "Earth Science"], degree: "B Secondary Education Major in Physics", availability: "MTWThF 6 pm - 9 pm" },
 ];
 

@@ -28,6 +28,7 @@ Teachers and subjects include:
 - Teacher Steph: Mathematics, Physics, Biology.
 - Teacher Cedie: Mathematics, Language Proficiency, Reading Comprehension.
 - Teacher Saree: subject details to be added.
+- Teacher Therese: English, Filipino, Social Science.
 - Teacher Root: Physics, Mathematics, Earth Science.
 `;
 
