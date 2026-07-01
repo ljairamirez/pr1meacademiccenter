@@ -1,4 +1,4 @@
-ï»¿@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
 :root {
   --red: #c62828;
   --red-dark: #9b211c;
@@ -3299,7 +3299,7 @@ main {
 }
 
 /* =========================================================
-   PR1ME ACADEMIC CENTER â€” CLEAN PAC PAGE DESIGN
+   PR1ME ACADEMIC CENTER — CLEAN PAC PAGE DESIGN
    PAC colors:
    Navy:   #0e283b
    Red:    #df472d
@@ -3808,7 +3808,7 @@ body.pac-page .nav-links .nav-book:hover {
 }
 
 /* =========================================================
-   COMPACT PAC HERO â€” paste at the end of PAC styling
+   COMPACT PAC HERO — paste at the end of PAC styling
    ========================================================= */
 
 body.pac-page .pac-hero {
@@ -4241,4 +4241,417 @@ body {
   .pac-program-card:hover {
     transform: none;
   }
+}
+
+/* Chat indentation and space final */
+.ai-chat-panel {
+  width: min(370px, calc(100vw - 24px));
+  height: min(500px, calc(100vh - 88px));
+  grid-template-rows: auto minmax(170px, 1fr) auto auto;
+}
+
+.ai-chat-header {
+  padding: 14px 18px;
+}
+
+.ai-chat-header .eyebrow {
+  display: block;
+  padding-left: 0;
+  font-size: 0.84rem;
+}
+
+.ai-chat-messages {
+  padding: 16px 18px 12px;
+  gap: 10px;
+}
+
+.ai-chat-message.assistant {
+  max-width: min(84%, 292px);
+  margin-left: 0;
+}
+
+.ai-chat-suggestion-block {
+  padding: 10px 18px 12px;
+}
+
+.ai-chat-form {
+  padding: 12px 18px 16px;
+}
+
+.ai-chat-form input {
+  padding-left: 14px;
+}
+
+@media (max-width: 560px) {
+  .ai-chat-panel {
+    width: min(342px, calc(100vw - 20px));
+    height: min(470px, calc(100vh - 84px));
+    grid-template-rows: auto minmax(155px, 1fr) auto auto;
+  }
+
+  .ai-chat-header,
+  .ai-chat-messages,
+  .ai-chat-suggestion-block,
+  .ai-chat-form {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .ai-chat-message.assistant {
+    max-width: 88%;
+  }
+}
+
+/* Professional chat layout final override */
+.ai-chat-widget {
+  right: 18px;
+  bottom: 18px;
+}
+
+.ai-chat-panel {
+  right: 0;
+  bottom: 64px;
+  width: min(380px, calc(100vw - 36px));
+  height: min(520px, calc(100vh - 104px));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.ai-chat-panel[hidden] {
+  display: none !important;
+}
+
+.ai-chat-header {
+  flex: 0 0 auto;
+  padding: 16px 18px;
+  box-sizing: border-box;
+}
+
+.ai-chat-header .eyebrow {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.ai-chat-messages {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 16px;
+  padding: 14px 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.ai-chat-message {
+  width: auto;
+  max-width: 86%;
+  margin: 0;
+  padding: 9px 11px;
+  box-sizing: border-box;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
+  text-align: left;
+  font-size: 0.82rem;
+  line-height: 1.42;
+}
+
+.ai-chat-message.assistant {
+  align-self: flex-start;
+  max-width: 86%;
+}
+
+.ai-chat-message.user {
+  align-self: flex-end;
+  max-width: 86%;
+}
+
+.ai-chat-suggestion-block {
+  flex: 0 0 auto;
+  margin: 0 16px 10px;
+  padding: 10px 0 0;
+  border-top: 1px solid rgba(155, 33, 28, 0.12);
+  box-sizing: border-box;
+}
+
+.ai-chat-suggestion-block > p {
+  margin: 0 0 8px;
+  font-size: 0.68rem;
+}
+
+.ai-chat-suggestions {
+  display: flex;
+  gap: 8px;
+  padding: 0 0 5px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  box-sizing: border-box;
+}
+
+.ai-chat-suggestions button {
+  flex: 0 0 auto;
+  max-width: 230px;
+  white-space: nowrap;
+}
+
+.ai-chat-form {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 16px 16px;
+  padding: 10px;
+  border: 1px solid rgba(255, 122, 26, 0.28);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  box-sizing: border-box;
+}
+
+.ai-chat-form input {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
+  min-height: 36px;
+  padding: 0 10px;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+  font-size: 0.82rem;
+}
+
+.ai-chat-form input:focus {
+  box-shadow: none;
+}
+
+.ai-chat-form button {
+  flex: 0 0 auto;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 7px;
+  font-size: 0.78rem;
+}
+
+@media (max-width: 560px) {
+  .ai-chat-widget {
+    right: 10px;
+    bottom: 10px;
+  }
+
+  .ai-chat-panel {
+    width: min(342px, calc(100vw - 20px));
+    height: min(500px, calc(100vh - 92px));
+    bottom: 58px;
+  }
+
+  .ai-chat-header {
+    padding: 14px 16px;
+  }
+
+  .ai-chat-messages,
+  .ai-chat-suggestion-block,
+  .ai-chat-form {
+    margin-left: 14px;
+    margin-right: 14px;
+  }
+
+  .ai-chat-message,
+  .ai-chat-message.assistant,
+  .ai-chat-message.user {
+    max-width: 88%;
+  }
+}
+
+/* Chat background cleanup */
+.ai-chat-panel {
+  background: linear-gradient(180deg, #fffaf8 0%, #fff3ec 100%);
+  border: 1px solid rgba(155, 33, 28, 0.18);
+  box-shadow: 0 18px 42px rgba(63, 24, 18, 0.18);
+}
+
+.ai-chat-messages {
+  background: linear-gradient(180deg, #fffdfb 0%, #fff7f2 100%);
+  border: 1px solid rgba(155, 33, 28, 0.08);
+  border-radius: 8px;
+}
+
+.ai-chat-message.assistant,
+.ai-chat-message.user {
+  background: #ffffff;
+}
+
+.ai-chat-suggestion-block {
+  background: linear-gradient(180deg, #fff7f1 0%, #fff0e7 100%);
+  border: 1px solid rgba(155, 33, 28, 0.1);
+  border-radius: 8px;
+  padding: 10px 12px 12px;
+}
+
+.ai-chat-form {
+  background: #ffffff;
+  border: 1px solid rgba(255, 108, 24, 0.32);
+  border-radius: 9px;
+}
+/* Testimonial pattern on visible sections, not the whole main canvas */
+body:not(.pac-page) main {
+  background: linear-gradient(180deg, #fff7f1 0%, #fff1e9 48%, #fff8f3 100%) !important;
+}
+
+body:not(.pac-page) .home-hero,
+body:not(.pac-page) .promo-section,
+body:not(.pac-page) .center-section,
+body:not(.pac-page) .packages-section,
+body:not(.pac-page) .booking-service-section,
+body:not(.pac-page) .team-section,
+body:not(.pac-page) .tutors-section,
+body:not(.pac-page) .why-section,
+body:not(.pac-page) .feedback-section,
+body:not(.pac-page) .about-section {
+  background:
+    linear-gradient(135deg, rgba(255, 250, 247, 0.9), rgba(255, 239, 229, 0.82)),
+    url("Assets/testimonial_bg.png") center / 150px auto repeat !important;
+}
+
+body:not(.pac-page) .section:not(.home-hero) {
+  border-radius: 10px;
+}
+
+body:not(.pac-page) .home-hero,
+body:not(.pac-page) .page-ribbon {
+  border-radius: 0;
+}
+/* Restore dark page ribbon design */
+body:not(.pac-page) .page-ribbon {
+  color: var(--white);
+  background:
+    linear-gradient(135deg, rgba(33, 27, 25, 0.22), rgba(155, 33, 28, 0.96) 56%, rgba(255, 122, 26, 0.94)),
+    url("Assets/testimonial_bg.png") center / 140px auto repeat,
+    linear-gradient(90deg, var(--black), var(--red), var(--orange)) !important;
+  border-radius: 0;
+}
+
+body:not(.pac-page) .page-ribbon .eyebrow {
+  color: #ffe2d1;
+}
+
+body:not(.pac-page) .page-ribbon h1 {
+  color: var(--white);
+  text-shadow: 0 8px 22px rgba(17, 17, 17, 0.28);
+}
+/* Stronger testimonial pattern visibility */
+body:not(.pac-page) .home-hero,
+body:not(.pac-page) .promo-section,
+body:not(.pac-page) .center-section,
+body:not(.pac-page) .packages-section,
+body:not(.pac-page) .booking-service-section,
+body:not(.pac-page) .team-section,
+body:not(.pac-page) .tutors-section,
+body:not(.pac-page) .why-section,
+body:not(.pac-page) .feedback-section,
+body:not(.pac-page) .about-section {
+  background:
+    linear-gradient(135deg, rgba(255, 250, 247, 0.72), rgba(255, 238, 228, 0.62)),
+    url("Assets/testimonial_bg.png") center / 118px auto repeat !important;
+}
+
+body:not(.pac-page) .page-ribbon {
+  background:
+    linear-gradient(135deg, rgba(33, 27, 25, 0.06), rgba(155, 33, 28, 0.78) 56%, rgba(255, 122, 26, 0.74)),
+    url("Assets/testimonial_bg.png") center / 115px auto repeat,
+    linear-gradient(90deg, var(--black), var(--red), var(--orange)) !important;
+}
+/* Darker patterned cards and subsection surfaces */
+body:not(.pac-page) .current-program-card,
+body:not(.pac-page) .promo-card,
+body:not(.pac-page) .package-card,
+body:not(.pac-page) .service-card,
+body:not(.pac-page) .booking-option-card,
+body:not(.pac-page) .booking-form,
+body:not(.pac-page) .booking-panel,
+body:not(.pac-page) .owner-panel,
+body:not(.pac-page) .why-panel,
+body:not(.pac-page) .feedback-card,
+body:not(.pac-page) .text-feedback-card,
+body:not(.pac-page) .tutor-card,
+body:not(.pac-page) .team-gallery,
+body:not(.pac-page) .tool-row {
+  background-color: #fff1e8 !important;
+  background-image:
+    linear-gradient(135deg, rgba(255, 246, 239, 0.52), rgba(255, 213, 188, 0.36)),
+    url("Assets/testimonial_bg.png") !important;
+  background-position: center !important;
+  background-size: auto, 105px auto !important;
+  background-repeat: repeat !important;
+  border-color: rgba(155, 33, 28, 0.24) !important;
+  box-shadow: 0 14px 32px rgba(90, 36, 24, 0.13) !important;
+}
+
+body:not(.pac-page) .tutor-card li,
+body:not(.pac-page) .booking-resource-row,
+body:not(.pac-page) .terms-check,
+body:not(.pac-page) .downpayment-note,
+body:not(.pac-page) .group-option-list span,
+body:not(.pac-page) .service-link-row a {
+  background: rgba(255, 225, 207, 0.88) !important;
+}
+
+body:not(.pac-page) .booking-poster-top,
+body:not(.pac-page) .booking-poster,
+body:not(.pac-page) .promo-photo,
+body:not(.pac-page) .team-gallery-item,
+body:not(.pac-page) .feedback-photo {
+  background-color: #fff7f2 !important;
+}
+/* Restore header and ribbon pattern to previous visibility */
+body:not(.pac-page) .page-ribbon {
+  background:
+    linear-gradient(135deg, rgba(33, 27, 25, 0.22), rgba(155, 33, 28, 0.96) 56%, rgba(255, 122, 26, 0.94)),
+    url("Assets/testimonial_bg.png") center / 140px auto repeat,
+    linear-gradient(90deg, var(--black), var(--red), var(--orange)) !important;
+}
+/* Clearer testimonial pattern on cards without darkening the color */
+body:not(.pac-page) .current-program-card,
+body:not(.pac-page) .promo-card,
+body:not(.pac-page) .package-card,
+body:not(.pac-page) .service-card,
+body:not(.pac-page) .booking-option-card,
+body:not(.pac-page) .booking-form,
+body:not(.pac-page) .booking-panel,
+body:not(.pac-page) .owner-panel,
+body:not(.pac-page) .why-panel,
+body:not(.pac-page) .feedback-card,
+body:not(.pac-page) .text-feedback-card,
+body:not(.pac-page) .tutor-card,
+body:not(.pac-page) .team-gallery,
+body:not(.pac-page) .tool-row {
+  background-color: #fffaf6 !important;
+  background-image:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.34), rgba(255, 246, 239, 0.24)),
+    url("Assets/testimonial_bg.png") !important;
+  background-position: center !important;
+  background-size: auto, 82px auto !important;
+  background-repeat: repeat !important;
+  border-color: rgba(155, 33, 28, 0.18) !important;
+  box-shadow: 0 14px 32px rgba(90, 36, 24, 0.11) !important;
+}
+
+body:not(.pac-page) .tutor-card li,
+body:not(.pac-page) .booking-resource-row,
+body:not(.pac-page) .terms-check,
+body:not(.pac-page) .downpayment-note,
+body:not(.pac-page) .group-option-list span,
+body:not(.pac-page) .service-link-row a {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.42), rgba(255, 245, 238, 0.28)),
+    url("Assets/testimonial_bg.png") center / 72px auto repeat !important;
+  border-color: rgba(155, 33, 28, 0.14) !important;
 }
