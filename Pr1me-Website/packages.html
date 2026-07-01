@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -30,7 +30,7 @@
         <a href="tutors.html" data-page-link="tutors">Tutors</a>
         <a href="packages.html" data-page-link="packages">Services</a>
         <a href="about.html" data-page-link="about">About</a>
-        <a class="nav-cta" href="https://www.facebook.com/PR1ME.ts" target="_blank" rel="noreferrer">Inquire on Facebook</a><a class="nav-cta nav-book" href="booking.html" data-page-link="booking">Book a Service</a>
+        <a class="nav-cta nav-book" href="booking.html" data-page-link="booking">Book a Service</a><a class="nav-cta pac-link" href="primeac.html" data-page-link="primeac">PAC</a>
       </div>
     </nav>
   </header>
@@ -56,7 +56,7 @@
           <button type="button" data-package-filter="review">Review</button>
           <button type="button" data-package-filter="summer">Summer</button>
         </div>
-        <div class="package-actions"><button class="button primary" type="button" data-open-booking>Inquiry</button><a class="button secondary" href="booking.html">Book a Service</a></div>
+        <div class="package-actions"><button class="button primary" type="button" data-open-booking data-booking-mode="inquiry">Inquiry</button><a class="button secondary" href="booking.html">Book a Service</a></div>
       </div>
 
       <div class="package-grid">
@@ -66,7 +66,7 @@
             <h3>One-on-One Tutorial</h3>
             <p>Personalized sessions for homework help, assessments, advance lessons, and guided practice.</p>
           </div>
-          <strong><a href="#booking" data-open-booking>Book Personalized Session</a></strong>
+          <strong class="service-link-row"><a href="#booking" data-open-booking data-booking-mode="inquiry">Inquiry</a><a href="?mode=booking#booking" data-open-booking data-booking-mode="booking">Book Personalized Session</a></strong>
         </article>
 
         <article class="package-card" data-package="academic">
@@ -104,15 +104,6 @@
           <strong>Online or Face-to-Face</strong>
         </article>
 
-        <article class="package-card" data-package="review">
-          <div>
-            <p class="package-type">Review Program</p>
-            <h3>DOST-SEI Review</h3>
-            <p>Focused group review sessions for the upcoming Undergraduate DOST-SEI Scholarship Examination.</p>
-          </div>
-          <strong>Online or Face-to-Face</strong>
-        </article>
-
         <article class="package-card" data-package="summer">
           <div>
             <p class="package-type">Summer Program</p>
@@ -136,17 +127,17 @@
       <section class="booking-panel" id="booking" aria-labelledby="booking-title" hidden>
         <div class="section-heading compact">
           <div>
-            <p class="eyebrow">One-on-One Session Form</p>
-            <h2 id="booking-title">Send an Inquiry</h2>
-            <p class="form-note">Fill this out for one-on-one tutoring inquiries. Pr1me will review the details and contact the guardian for confirmation.</p>
+            <p class="eyebrow" data-booking-eyebrow>One-on-One Inquiry Form</p>
+            <h2 id="booking-title" data-booking-title>Send an Inquiry</h2>
+            <p class="form-note" data-booking-note>Fill this out for one-on-one tutoring inquiries. Pr1me will review the details and contact the guardian for confirmation.</p>
           </div>
           
         </div>
 
-        <form class="booking-form" name="service-inquiry" method="POST" netlify netlify-honeypot="bot-field" enctype="multipart/form-data" data-booking-form>
-          <input type="hidden" name="form-name" value="service-inquiry">
+        <form class="booking-form" name="service-inquiry" method="POST" enctype="multipart/form-data" data-booking-form>
           <input type="hidden" name="submission-title" data-submission-title value="">
           <input type="hidden" name="service" value="One-on-One Tutoring" data-summary-label="Service">
+          <input type="hidden" name="request-type" value="Inquiry" data-summary-label="Request Type" data-form-mode-input>
           <p class="hidden-field">
             <label>Do not fill this out: <input name="bot-field"></label>
           </p>
@@ -215,13 +206,16 @@
             </label>
           </div>
 
-          <div class="booking-resource-row">
+          <div class="booking-resource-row" data-booking-only>
             <button class="button secondary small-button" type="button" data-terms-open>View Terms and Conditions</button>
-            <button class="button secondary small-button" type="button" title="Payment option files can be linked here once attached." disabled>View Payment Options</button>
+          </div>
+
+          <div class="booking-resource-row" data-booking-only>
+            <button class="button secondary small-button" type="button" data-payment-open>View Payment Options</button>
             <strong class="downpayment-note">Downpayment: PHP 2,000</strong>
           </div>
 
-          <label class="terms-check">
+          <label class="terms-check" data-booking-only>
             <input type="checkbox" name="terms-approved" data-summary-label="Terms Approved" data-terms-approved required>
             I have viewed and approved the Terms and Conditions.
           </label>
@@ -248,7 +242,7 @@
           </label>
 
           <div class="booking-actions">
-            <button class="button primary" type="submit">Submit</button>
+            <button class="button primary" type="submit" data-booking-submit>Submit Inquiry</button>
             <button class="button secondary" type="button" data-email-booking>Send via Email</button>
             <button class="button secondary" type="button" data-facebook-booking>Inquire on Facebook</button>
             <button class="button secondary" type="button" data-booking-back>Back to Services</button>
@@ -289,6 +283,32 @@
     </div>
   </footer>
 
+
+  <div class="terms-modal payment-modal" data-payment-modal hidden role="dialog" aria-modal="true" aria-labelledby="payment-modal-title">
+    <div class="terms-modal-card payment-modal-card">
+      <div class="terms-modal-header">
+        <h2 id="payment-modal-title">Payment Options</h2>
+        <button type="button" data-payment-close aria-label="Close Payment Options">x</button>
+      </div>
+      <div class="payment-modal-body">
+        <img src="Assets/payment-options.png" alt="Pr1me scan-to-pay QR codes for GCash, Maya, and BDO">
+      </div>
+      <div class="terms-modal-actions">
+        <button class="button primary small-button" type="button" data-payment-close>Done</button>
+      </div>
+    </div>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

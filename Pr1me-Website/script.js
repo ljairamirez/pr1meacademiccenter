@@ -1,4 +1,4 @@
-const assetExtensions = [
+﻿const assetExtensions = [
   "png",
   "jpg",
   "JPG",
@@ -221,6 +221,13 @@ const bookingPanel = document.querySelector("#booking");
 const openBookingButtons = document.querySelectorAll("[data-open-booking]");
 const bookingBackButton = document.querySelector("[data-booking-back]");
 const bookingForm = document.querySelector("[data-booking-form]");
+const bookingOnlyFields = document.querySelectorAll("[data-booking-only]");
+const bookingModeInput = document.querySelector("[data-form-mode-input]");
+const bookingEyebrow = document.querySelector("[data-booking-eyebrow]");
+const bookingTitle = document.querySelector("[data-booking-title]");
+const bookingNote = document.querySelector("[data-booking-note]");
+const bookingSubmitButton = document.querySelector("[data-booking-submit]");
+let bookingModeState = "inquiry";
 const emailBookingButton = document.querySelector("[data-email-booking]");
 const facebookBookingButton = document.querySelector("[data-facebook-booking]");
 const rateOutput = document.querySelector("[data-rate-output]");
@@ -229,8 +236,11 @@ const openTermsButton = document.querySelector("[data-terms-open]");
 const closeTermsButton = document.querySelector("[data-terms-close]");
 const approveTermsButton = document.querySelector("[data-terms-approve]");
 const termsApprovedCheckbox = document.querySelector("[data-terms-approved]");
-const isNetlifyHost = window.location.hostname.includes("netlify");
-const useVercelBooking = !isNetlifyHost && window.location.protocol !== "file:";
+const paymentModal = document.querySelector("[data-payment-modal]");
+const openPaymentButton = document.querySelector("[data-payment-open]");
+const closePaymentButtons = document.querySelectorAll("[data-payment-close]");
+const useServerBooking = window.location.protocol !== "file:";
+const bookingEndpoint = "/api/booking";
 
 const tutoringRateTable = {
   "5 hours": {
@@ -321,8 +331,48 @@ function closeTermsModal() {
   document.body.classList.remove("modal-open");
 }
 
-function showBookingPanel() {
+function openPaymentModal() {
+  if (!paymentModal) return;
+  paymentModal.hidden = false;
+  document.body.classList.add("modal-open");
+}
+
+function closePaymentModal() {
+  if (!paymentModal) return;
+  paymentModal.hidden = true;
+  document.body.classList.remove("modal-open");
+}
+
+function setBookingMode(mode = "inquiry") {
+  bookingModeState = mode === "booking" ? "booking" : "inquiry";
+  const isBooking = bookingModeState === "booking";
+
+  bookingForm?.setAttribute("data-mode", bookingModeState);
+  bookingOnlyFields.forEach((field) => {
+    field.hidden = !isBooking;
+  });
+
+  const modeSelect = bookingForm?.querySelector('[name="mode"]');
+  if (modeSelect) modeSelect.required = true;
+  if (termsApprovedCheckbox) termsApprovedCheckbox.required = isBooking;
+  if (!isBooking && termsApprovedCheckbox) termsApprovedCheckbox.checked = false;
+
+  if (bookingModeInput) bookingModeInput.value = isBooking ? "Booking / Reservation" : "Inquiry";
+  if (bookingEyebrow) bookingEyebrow.textContent = isBooking ? "One-on-One Booking Form" : "One-on-One Inquiry Form";
+  if (bookingTitle) bookingTitle.textContent = isBooking ? "Book a Personalized Session" : "Send an Inquiry";
+  if (bookingNote) {
+    bookingNote.textContent = isBooking
+      ? "Complete the session details, review the terms, and view payment options before submitting your booking request."
+      : "Send only the needed details for questions, tutor matching, subject support, or schedule checking.";
+  }
+  if (bookingSubmitButton) bookingSubmitButton.textContent = isBooking ? "Submit Booking" : "Submit Inquiry";
+
+  updateTutoringRate();
+}
+
+function showBookingPanel(mode = "inquiry") {
   if (!bookingPanel) return;
+  setBookingMode(mode);
   bookingPanel.hidden = false;
   bookingPanel.scrollIntoView({ behavior: "smooth", block: "start" });
 }
@@ -335,7 +385,9 @@ function hideBookingPanel() {
 
 function getBookingSummary(form) {
   const title = updateBookingSubmissionTitle(form);
-  const summaryLines = [title || "Pr1me Tutorial Services Inquiry", "", "Inquiry Details:"];
+  const requestType = form.querySelector('[name="request-type"]')?.value.trim() || "Inquiry";
+  const detailsLabel = requestType.toLowerCase().includes("booking") ? "Booking Details:" : "Inquiry Details:";
+  const summaryLines = [title || "Pr1me Tutorial Services Inquiry", "", detailsLabel];
   const fields = form.querySelectorAll("[data-summary-label]");
 
   fields.forEach((field) => {
@@ -351,7 +403,7 @@ function getBookingSummary(form) {
     }
   });
 
-  summaryLines.push("", "Please review this inquiry and contact the guardian for confirmation.");
+  summaryLines.push("", `Please review this ${requestType.toLowerCase()} and contact the guardian for confirmation.`);
 
   return summaryLines.join("\n");
 }
@@ -366,6 +418,7 @@ function getBookingPayload(form) {
     email: form.querySelector('[name="email"]')?.value.trim() || "",
     contactNumber: form.querySelector('[name="contact-number"]')?.value.trim() || "",
     service: form.querySelector('[name="service"]')?.value.trim() || "",
+    requestType: form.querySelector('[name="request-type"]')?.value.trim() || "Inquiry",
     package: form.querySelector('[name="package"]')?.value.trim() || "",
     mode: form.querySelector('[name="mode"]')?.value.trim() || "",
     tutoringRate: form.querySelector('[name="tutoring-rate"]')?.value.trim() || "",
@@ -394,7 +447,7 @@ function updateBookingSubmissionTitle(form) {
 openBookingButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
-    showBookingPanel();
+    showBookingPanel(button.dataset.bookingMode || "inquiry");
     if (window.location.hash !== "#booking") {
       history.replaceState(null, "", "#booking");
     }
@@ -402,7 +455,8 @@ openBookingButtons.forEach((button) => {
 });
 
 if (window.location.hash === "#booking") {
-  showBookingPanel();
+  const requestedMode = new URLSearchParams(window.location.search).get("mode");
+  showBookingPanel(requestedMode === "booking" ? "booking" : "inquiry");
 }
 
 if (bookingBackButton) {
@@ -430,8 +484,22 @@ if (termsModal) {
   });
 }
 
+if (openPaymentButton) {
+  openPaymentButton.addEventListener("click", openPaymentModal);
+}
+
+closePaymentButtons.forEach((button) => {
+  button.addEventListener("click", closePaymentModal);
+});
+
+if (paymentModal) {
+  paymentModal.addEventListener("click", (event) => {
+    if (event.target === paymentModal) closePaymentModal();
+  });
+}
+
 if (bookingForm) {
-  updateTutoringRate();
+  if (bookingPanel?.hidden) setBookingMode("inquiry");
   bookingForm.addEventListener("input", () => {
     updateBookingSubmissionTitle(bookingForm);
     updateTutoringRate();
@@ -444,14 +512,14 @@ if (bookingForm) {
     updateBookingSubmissionTitle(bookingForm);
     updateTutoringRate();
 
-    if (termsApprovedCheckbox && !termsApprovedCheckbox.checked) {
+    if (bookingModeState === "booking" && termsApprovedCheckbox && !termsApprovedCheckbox.checked) {
       event.preventDefault();
       openTermsModal();
       alert("Please view and approve the Terms and Conditions before submitting.");
       return;
     }
 
-    if (!useVercelBooking) return;
+    if (!useServerBooking) return;
 
     event.preventDefault();
 
@@ -464,7 +532,7 @@ if (bookingForm) {
     }
 
     try {
-      const response = await fetch("/api/booking", {
+      const response = await fetch(bookingEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(getBookingPayload(bookingForm)),
@@ -472,11 +540,12 @@ if (bookingForm) {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Inquiry could not be submitted.");
+        throw new Error(data.error || `${bookingModeState === "booking" ? "Booking" : "Inquiry"} could not be submitted.`);
       }
 
-      alert("Inquiry submitted successfully.");
+      alert(`${bookingModeState === "booking" ? "Booking" : "Inquiry"} submitted successfully.`);
       bookingForm.reset();
+      setBookingMode(bookingModeState);
       updateBookingSubmissionTitle(bookingForm);
     } catch (error) {
       alert(`${error.message}\n\nYou can still use Send via Email or Inquire on Facebook.`);
@@ -556,12 +625,12 @@ const pr1meFaqAnswers = [
   {
     keywords: ["service", "offer", "offered", "tutorial", "class"],
     answer:
-      "Pr1me offers One-on-One Tutorial, Regular Group Tutorial, Study-Buddy Tutoring, PSHS Regular Group Tutoring, Examination Reviews, DOST-SEI Review, Booster Program, and LEAP. You can view services, send an inquiry, or open the booking page from the Services page.",
+      "Pr1me Tutorial Services offers One-on-One Tutorial, Regular Group Tutorial, Study-Buddy Tutoring, PSHS Regular Group Tutoring, Examination Reviews, Booster Program, and LEAP. Pr1me Academic Center (PAC) has its own page for Academic Center programs such as DOST-SEI Review.",
   },
   {
     keywords: ["program", "current", "promotion", "summer", "leap", "booster"],
     answer:
-      "Current programs shown on the site include PSHS Regular Group Tutoring, Study-Buddy Tutoring, and One-on-One Tutoring.",
+      "Current programs shown on the tutorial site include PSHS Regular Group Tutoring, Study-Buddy Tutoring, and One-on-One Tutoring. PAC programs include DOST-SEI Review, with more Academic Center programs to be added soon.",
   },
   {
     keywords: ["book", "booking", "reserve", "schedule", "avail", "form"],
@@ -586,7 +655,7 @@ const pr1meFaqAnswers = [
   {
     keywords: ["online", "face", "hybrid", "onsite", "in person", "f2f"],
     answer:
-      "Yes. One-on-One Tutorial, Regular Group Tutorial, Study-Buddy Tutoring, Examination Reviews, and DOST-SEI Review can be Online or Face-to-Face. Booster is listed as Online, while LEAP is listed as Hybrid.",
+      "Yes. One-on-One Tutorial, Regular Group Tutorial, Study-Buddy Tutoring, and Examination Reviews can be Online or Face-to-Face. Booster is listed as Online, while LEAP is listed as Hybrid. DOST-SEI Review is now listed under the PAC page.",
   },
   {
     keywords: ["tutor", "teacher", "teachers", "subjects"],
@@ -712,7 +781,6 @@ function createChatWidget() {
       <div class="ai-chat-header">
         <div>
           <p class="eyebrow">Pr1me Assistant</p>
-          <p class="ai-chat-subtitle">Ask about Pr1me, tutors, booking, or school topics.</p>
         </div>
         <button type="button" aria-label="Close AI chat" data-chat-close>&times;</button>
       </div>
@@ -809,18 +877,13 @@ function setupChatWidget() {
         signal: controller.signal,
       };
       let response = await fetch("/api/chat", requestOptions);
-
-      if (response.status === 404) {
-        response = await fetch("/.netlify/functions/chat", requestOptions);
-      }
-
-      window.clearTimeout(timeout);
+window.clearTimeout(timeout);
       const data = await response.json().catch(() => ({}));
-      const reply = data.reply || data.error || "The AI chat is not available right now.";
+      const reply = data.reply || data.error || "The AI chat is under development. Please contact Pr1me through Facebook or email for now.";
       typingMessage.textContent = reply;
       chatHistory.push({ role: "assistant", content: reply });
     } catch {
-      typingMessage.textContent = "The AI chat is not available yet. Please contact Pr1me through Facebook or email.";
+      typingMessage.textContent = "The AI chat is under development. Please contact Pr1me through Facebook or email for now.";
     } finally {
       setChatBusy(false);
       input.focus();
@@ -829,3 +892,17 @@ function setupChatWidget() {
 }
 
 setupChatWidget();
+
+
+
+
+
+
+
+
+
+
+
+
+
+

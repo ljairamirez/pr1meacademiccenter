@@ -1,15 +1,15 @@
-const PR1ME_CONTEXT = `
+﻿const PR1ME_CONTEXT = `
 Pr1me Tutorial Services is a tutorial center at 88 Maginhawa, Teacher's Village, Diliman, Quezon City.
-Contact links: Facebook page https://www.facebook.com/PR1ME.ts/ and email tutorialservices.pr1me@gmail.com.
+Contact links: Tutorial Services Facebook page https://www.facebook.com/PR1ME.ts/, PAC Facebook page https://www.facebook.com/prime.academic.center, and email tutorialservices.pr1me@gmail.com.
 Services offered:
 - One-on-One Tutorial: personalized sessions for homework help, assessments, advance lessons, and guided practice. Online, Face-to-Face, or Hybrid.
 - Study-Buddy Tutoring: pair or two-student sessions for selected subjects. Online, Face-to-Face, or Hybrid.
 - PSHS Regular Group Tutoring: scheduled online group tutoring aligned with PSHS curriculum. Registration link: https://forms.gle/hq6tTxyBT85ncFT2A
 - Regular Group Tutorial: curriculum-based shared sessions for classmates or same-level learners. Online, Face-to-Face, or Hybrid.
 - Examination Reviews: focused group review sessions for midterm exams, periodical exams, and other summative assessments. Online or Face-to-Face.
-- DOST-SEI Review: focused group review sessions for the Undergraduate DOST-SEI Scholarship Examination. Online or Face-to-Face.
 - Booster Program: review program covering foundational topics to help students prepare for specialization years. Online.
 - Level Enhancement and Advancement Program (LEAP): advancement program introducing incoming grade-level lessons. Hybrid.
+Pr1me Academic Center (PAC) is a separate constituent inside the same website. PAC currently lists DOST-SEI Review, with new programs to be added soon. PAC Facebook: https://www.facebook.com/prime.academic.center.
 Inquiry: users can go to the Services page and click Inquiry. Booking: users can open booking.html for booking options, inquire on Facebook, choose One-on-One Tutoring, or join Regular Group Tutoring through https://forms.gle/hq6tTxyBT85ncFT2A.
 Teachers and subjects include:
 - Teacher Gina: Mathematics, Statistics, Review Support.
@@ -139,3 +139,5 @@ ${PR1ME_CONTEXT}`,
     }, 500);
   }
 }
+
+

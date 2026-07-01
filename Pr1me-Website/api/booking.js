@@ -1,4 +1,4 @@
-function jsonResponse(body, status = 200) {
+﻿function jsonResponse(body, status = 200) {
   return Response.json(body, {
     status,
     headers: {
@@ -23,6 +23,7 @@ function buildBookingSummary(data) {
     ["Email", data.email],
     ["Contact Number", data.contactNumber],
     ["Service", data.service],
+    ["Request Type", data.requestType],
     ["Package", data.package],
     ["Mode", data.mode],
     ["Tutoring Rate", data.tutoringRate],
@@ -49,7 +50,7 @@ export default async function handler(request) {
 
   if (!process.env.RESEND_API_KEY) {
     return jsonResponse({
-      error: "Inquiry email is not configured yet. Please set RESEND_API_KEY in Vercel, or use Send via Email / Facebook.",
+      error: "Email submission is not configured yet. Please set RESEND_API_KEY in Vercel, or use Send via Email / Facebook.",
     }, 503);
   }
 
@@ -67,10 +68,13 @@ export default async function handler(request) {
   const age = clean(data.age);
   const contactNumber = clean(data.contactNumber);
   const service = clean(data.service) || "One-on-One Tutoring";
+  const requestType = clean(data.requestType) || "Inquiry";
+  const isBooking = requestType.toLowerCase().includes("booking");
+  const requestLabel = isBooking ? "Booking" : "Inquiry";
   const mode = clean(data.mode);
 
   if (!guardianName || !studentName || !gradeLevel || !school || !age || !contactNumber || !mode) {
-    return jsonResponse({ error: "Please complete the required inquiry fields." }, 400);
+    return jsonResponse({ error: `Please complete the required ${requestLabel.toLowerCase()} fields.` }, 400);
   }
 
   const subject = `${studentName} - ${service}`;
@@ -89,13 +93,13 @@ export default async function handler(request) {
         from,
         to,
         subject,
-        text: `New Pr1me service inquiry\n\n${summary}\n\nPlease review this inquiry and contact the guardian for confirmation.`,
+        text: `New Pr1me service ${requestLabel.toLowerCase()}\n\n${summary}\n\nPlease review this ${requestLabel.toLowerCase()} and contact the guardian for confirmation.`,
         html: `
           <div style="font-family: Arial, sans-serif; color: #111; line-height: 1.5;">
-            <h2 style="margin: 0 0 8px; color: #c62828;">New Pr1me Service Inquiry</h2>
+            <h2 style="margin: 0 0 8px; color: #c62828;">New Pr1me Service ${requestLabel}</h2>
             <p style="margin: 0 0 16px;"><strong>${subject}</strong></p>
             <pre style="white-space: pre-wrap; background: #fff0e4; border: 1px solid #ead2ca; border-radius: 8px; padding: 14px; font-family: Arial, sans-serif;">${summary}</pre>
-            <p style="margin-top: 16px; color: #4a403d;">Please review this inquiry and contact the guardian for confirmation.</p>
+            <p style="margin-top: 16px; color: #4a403d;">Please review this ${requestLabel.toLowerCase()} and contact the guardian for confirmation.</p>
           </div>
         `,
       }),
@@ -105,14 +109,15 @@ export default async function handler(request) {
 
     if (!response.ok) {
       return jsonResponse({
-        error: result.message || result.error || "Inquiry email could not be sent.",
+        error: result.message || result.error || `${requestLabel} email could not be sent.`,
       }, response.status);
     }
 
-    return jsonResponse({ ok: true, message: "Inquiry submitted successfully." });
+    return jsonResponse({ ok: true, message: `${requestLabel} submitted successfully.` });
   } catch {
     return jsonResponse({
-      error: "Inquiry email is temporarily unavailable. Please use Send via Email or Facebook.",
+      error: `${requestLabel} email is temporarily unavailable. Please use Send via Email or Facebook.`,
     }, 500);
   }
 }
+
