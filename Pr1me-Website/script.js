@@ -42,7 +42,7 @@ if (siteLoader) {
     closeSiteLoader();
   } else {
     document.body.classList.add("loader-active");
-    window.setTimeout(closeSiteLoader, 2300);
+    window.setTimeout(closeSiteLoader, 1400);
   }
 }
 
@@ -139,7 +139,7 @@ if ("IntersectionObserver" in window) {
 
   window.setTimeout(() => {
     revealItems.forEach((item) => item.classList.add("is-visible"));
-  }, 900);
+  }, 450);
 } else {
   revealItems.forEach((item) => item.classList.add("is-visible"));
 }
@@ -892,6 +892,7 @@ window.clearTimeout(timeout);
 }
 
 setupChatWidget();
+
 
 
 
