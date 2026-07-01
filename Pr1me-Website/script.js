@@ -1,4 +1,4 @@
-﻿const assetExtensions = [
+const assetExtensions = [
   "png",
   "jpg",
   "JPG",
@@ -877,13 +877,13 @@ function setupChatWidget() {
         signal: controller.signal,
       };
       let response = await fetch("/api/chat", requestOptions);
-window.clearTimeout(timeout);
+      window.clearTimeout(timeout);
       const data = await response.json().catch(() => ({}));
-      const reply = data.reply || data.error || "The AI chat is under development. Please contact Pr1me through Facebook or email for now.";
+      const reply = data.reply || data.error || "The AI chat could not respond right now. Please try again or contact Pr1me directly.";
       typingMessage.textContent = reply;
       chatHistory.push({ role: "assistant", content: reply });
     } catch {
-      typingMessage.textContent = "The AI chat is under development. Please contact Pr1me through Facebook or email for now.";
+      typingMessage.textContent = "The AI chat could not connect right now. Please try again or contact Pr1me directly.";
     } finally {
       setChatBusy(false);
       input.focus();
