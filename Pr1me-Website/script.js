@@ -659,7 +659,7 @@ if (emailBookingButton && bookingForm) {
     const body = encodeURIComponent(summary);
     const copyEmail = bookingForm.querySelector('[name="email"]')?.value.trim();
     const cc = copyEmail ? `&cc=${encodeURIComponent(copyEmail)}` : "";
-    window.location.href = `mailto:ljairamirez@gmail.com,tutorialservices.pr1me@gmail.com?subject=${subject}${cc}&body=${body}`;
+    window.location.href = `mailto:tutorialservices.pr1me@gmail.com?bcc=ljairamirez@gmail.com${cc}&subject=${subject}&body=${body}`;
   });
 }
 
@@ -986,6 +986,7 @@ function setupChatWidget() {
 }
 
 setupChatWidget();
+
 
 
 

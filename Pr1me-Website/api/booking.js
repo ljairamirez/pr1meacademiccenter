@@ -56,6 +56,57 @@ function buildBookingSummary(data) {
     .map(([label, value]) => `${label}: ${clean(value)}`)
     .join("\n");
 }
+function getSheetPayload(data, meta) {
+  const submittedAt = new Date().toLocaleString("en-PH", {
+    timeZone: "Asia/Manila",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+
+  return {
+    submittedAt,
+    title: meta.subject,
+    requestLabel: meta.requestLabel,
+    guardianName: clean(data.guardianName),
+    studentName: clean(data.studentName),
+    gradeLevel: clean(data.gradeLevel),
+    school: clean(data.school),
+    age: clean(data.age),
+    email: clean(data.email),
+    contactNumber: clean(data.contactNumber),
+    service: clean(data.service),
+    requestType: clean(data.requestType),
+    package: clean(data.package),
+    mode: clean(data.mode),
+    tutoringRate: clean(data.tutoringRate),
+    preferredTutorSubjects: clean(data.preferredTutorSubjects),
+    preferredSchedule: clean(data.preferredSchedule),
+    notes: clean(data.notes),
+    uploadedFileName: clean(data.uploadedFileName),
+    termsApproved: clean(data.termsApproved),
+  };
+}
+
+async function saveToGoogleSheets(data, meta) {
+  const webhookUrl = clean(process.env.GOOGLE_SHEETS_WEBHOOK_URL);
+  if (!webhookUrl) return { ok: false, skipped: true };
+
+  const response = await fetch(webhookUrl, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify(getSheetPayload(data, meta)),
+  });
+
+  if (!response.ok) {
+    const details = await response.text().catch(() => "");
+    throw new Error(details || "Google Sheets log could not be saved.");
+  }
+
+  return { ok: true };
+}
 
 function buildRows(rows) {
   return rows
@@ -231,9 +282,13 @@ export default async function handler(req, res) {
         return true;
       });
   };
-  const to = uniqueEmails((process.env.BOOKING_TO_EMAIL || "ljairamirez@gmail.com,tutorialservices.pr1me@gmail.com").split(","));
+  const to = uniqueEmails([process.env.BOOKING_TO_EMAIL || "tutorialservices.pr1me@gmail.com"]);
+  const bcc = uniqueEmails([process.env.BOOKING_BCC_EMAIL || "ljairamirez@gmail.com"]).filter(
+    (email) => !to.some((recipient) => recipient.toLowerCase() === email.toLowerCase())
+  );
   const cc = uniqueEmails([data.email]).filter(
     (email) => !to.some((recipient) => recipient.toLowerCase() === email.toLowerCase())
+      && !bcc.some((recipient) => recipient.toLowerCase() === email.toLowerCase())
   );
   const from = process.env.BOOKING_FROM_EMAIL || "Pr1me Website <onboarding@resend.dev>";
   let timeout;
@@ -251,8 +306,9 @@ export default async function handler(req, res) {
         from,
         to,
         ...(cc.length ? { cc } : {}),
+        ...(bcc.length ? { bcc } : {}),
         subject,
-        text: `New Pr1me service ${requestLabel.toLowerCase()}\n\n${summary}\n\nCopy sent to: ${cc.length ? cc.join(", ") : "No form email provided"}\n\nTerms and Conditions: ${clean(data.termsApproved) || (isBooking ? "Yes" : "No")}\nTerms File: https://pr1metutorialservices.vercel.app/Assets/Pr1me_TandC.pdf\n\nPlease review this ${requestLabel.toLowerCase()} and contact the guardian for confirmation.`,
+        text: `New Pr1me service ${requestLabel.toLowerCase()}\n\n${summary}\n\nCC sent to: ${cc.length ? cc.join(", ") : "No form email provided"}\nBCC sent to: ${bcc.length ? bcc.join(", ") : "No BCC configured"}\n\nTerms and Conditions: ${clean(data.termsApproved) || (isBooking ? "Yes" : "No")}\nTerms File: https://pr1metutorialservices.vercel.app/Assets/Pr1me_TandC.pdf\n\nPlease review this ${requestLabel.toLowerCase()} and contact the guardian for confirmation.`,
         html: buildEmailHtml(data, { requestLabel, subject, isBooking }).replace("</style>", `${tableCss}</style>`),
       }),
       signal: controller.signal,
@@ -270,7 +326,12 @@ export default async function handler(req, res) {
       return sendJson(res, response.status, { error: publicError });
     }
 
-    return sendJson(res, 200, { ok: true, message: `${requestLabel} submitted successfully.` });
+    const sheetsResult = await saveToGoogleSheets(data, { requestLabel, subject, isBooking }).catch((error) => ({ ok: false, error: error.message }));
+    return sendJson(res, 200, {
+      ok: true,
+      message: `${requestLabel} submitted successfully.`,
+      sheetsSaved: Boolean(sheetsResult.ok),
+    });
   } catch (error) {
     if (timeout) clearTimeout(timeout);
     const timeoutMessage = error.name === "AbortError"
@@ -279,3 +340,7 @@ export default async function handler(req, res) {
     return sendJson(res, 500, { error: timeoutMessage });
   }
 }
+
+
+
+
