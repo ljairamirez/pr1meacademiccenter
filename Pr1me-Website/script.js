@@ -368,6 +368,7 @@ function setBookingMode(mode = "inquiry") {
   if (bookingSubmitButton) bookingSubmitButton.textContent = isBooking ? "Submit Booking" : "Submit Inquiry";
 
   updateTutoringRate();
+  updateAttachmentFallbackButtons();
 }
 
 function showBookingPanel(mode = "inquiry") {
@@ -408,8 +409,18 @@ function getBookingSummary(form) {
   return summaryLines.join("\n");
 }
 
-function getBookingPayload(form) {
-  return {
+function readFileAsBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result || "").split(",")[1] || "");
+    reader.onerror = () => reject(reader.error || new Error("Attachment could not be read."));
+    reader.readAsDataURL(file);
+  });
+}
+
+async function getBookingPayload(form) {
+  const attachment = form.querySelector('[name="attachment"]')?.files?.[0] || null;
+  const payload = {
     guardianName: form.querySelector('[name="guardian-name"]')?.value.trim() || "",
     studentName: form.querySelector('[name="student-name"]')?.value.trim() || "",
     gradeLevel: form.querySelector('[name="grade-level"]')?.value.trim() || "",
@@ -425,11 +436,20 @@ function getBookingPayload(form) {
     preferredTutorSubjects: form.querySelector('[name="preferred-tutor-subjects"]')?.value.trim() || "",
     preferredSchedule: form.querySelector('[name="preferred-schedule"]')?.value.trim() || "",
     notes: form.querySelector('[name="notes"]')?.value.trim() || "",
-    uploadedFileName: form.querySelector('[name="attachment"]')?.files?.[0]?.name || "",
+    uploadedFileName: attachment?.name || "",
     termsApproved: form.querySelector('[name="terms-approved"]')?.checked ? "Yes" : "No",
   };
-}
 
+  if (attachment) {
+    payload.attachment = {
+      filename: attachment.name,
+      contentType: attachment.type || "application/octet-stream",
+      content: await readFileAsBase64(attachment),
+    };
+  }
+
+  return payload;
+}
 function updateBookingSubmissionTitle(form) {
   if (!form) return "";
 
@@ -501,6 +521,7 @@ function restoreBookingDraft() {
 
   updateBookingSubmissionTitle(bookingForm);
   updateTutoringRate();
+  updateAttachmentFallbackButtons();
 }
 
 function clearBookingDraft() {
@@ -511,6 +532,16 @@ function clearBookingDraft() {
   }
 }
 
+function updateAttachmentFallbackButtons() {
+  if (!bookingForm) return;
+  const hasAttachment = Boolean(bookingForm.querySelector('[name="attachment"]')?.files?.length);
+  [emailBookingButton, facebookBookingButton].forEach((button) => {
+    if (!button) return;
+    button.disabled = hasAttachment;
+    button.classList.toggle("is-disabled", hasAttachment);
+    button.title = hasAttachment ? "Attachments can only be sent through Submit." : "";
+  });
+}
 openBookingButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
@@ -568,14 +599,17 @@ if (paymentModal) {
 if (bookingForm) {
   if (bookingPanel?.hidden) setBookingMode("inquiry");
   restoreBookingDraft();
+  updateAttachmentFallbackButtons();
   bookingForm.addEventListener("input", () => {
     updateBookingSubmissionTitle(bookingForm);
     updateTutoringRate();
+    updateAttachmentFallbackButtons();
     saveBookingDraft();
   });
   bookingForm.addEventListener("change", () => {
     updateBookingSubmissionTitle(bookingForm);
     updateTutoringRate();
+    updateAttachmentFallbackButtons();
     saveBookingDraft();
   });
   bookingForm.addEventListener("submit", async (event) => {
@@ -610,7 +644,7 @@ if (bookingForm) {
       const response = await fetch(bookingEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(getBookingPayload(bookingForm)),
+        body: JSON.stringify(await getBookingPayload(bookingForm)),
         signal: controller.signal,
       });
       window.clearTimeout(timeout);
@@ -986,6 +1020,9 @@ function setupChatWidget() {
 }
 
 setupChatWidget();
+
+
+
 
 
 

@@ -30,31 +30,42 @@ async function parseRequestBody(req) {
   return raw ? JSON.parse(raw) : {};
 }
 
-function buildBookingSummary(data) {
+function getPlainEmailText(data, meta) {
+  const requestDetails = `${meta.requestLabel} Details:`;
   const fields = [
-    ["Guardian Name", data.guardianName],
-    ["Student Name", data.studentName],
+    ["Service", data.service],
+    ["Request Type", data.requestType],
+    ["Student's Name", data.studentName],
     ["Grade Level", data.gradeLevel],
     ["School", data.school],
     ["Age", data.age],
+    ["Guardian", data.guardianName],
     ["Email", data.email],
     ["Contact Number", data.contactNumber],
-    ["Service", data.service],
-    ["Request Type", data.requestType],
     ["Package", data.package],
     ["Mode", data.mode],
     ["Tutoring Rate", data.tutoringRate],
+    ["Terms Approved", data.termsApproved],
     ["Preferred Tutor and/or Subjects", data.preferredTutorSubjects],
     ["Preferred Schedule", data.preferredSchedule],
     ["Notes", data.notes],
-    ["Uploaded File Name", data.uploadedFileName],
-    ["Terms Approved", data.termsApproved],
+    ["Attachment / Additional Documents", data.uploadedFileName],
   ];
 
-  return fields
-    .filter(([, value]) => clean(value))
-    .map(([label, value]) => `${label}: ${clean(value)}`)
-    .join("\n");
+  const lines = [meta.subject, "", requestDetails];
+  fields.forEach(([label, value]) => {
+    if (clean(value)) lines.push(`${label}: ${clean(value)}`);
+  });
+
+  lines.push("", `Please review this ${meta.requestLabel.toLowerCase()} and contact the guardian for confirmation.`);
+  return lines.join("\n");
+}
+
+function buildBookingSummary(data) {
+  return getPlainEmailText(data, {
+    subject: `${clean(data.studentName)} - ${clean(data.service) || "One-on-One Tutoring"}`,
+    requestLabel: clean(data.requestType).toLowerCase().includes("booking") ? "Booking" : "Inquiry",
+  });
 }
 function getSheetPayload(data, meta) {
   const submittedAt = new Date().toLocaleString("en-PH", {
@@ -268,7 +279,6 @@ export default async function handler(req, res) {
   }
 
   const subject = `${studentName} - ${service}`;
-  const summary = buildBookingSummary(data);
   const blockedRecipient = "glaurenciano@gmail.com";
   const uniqueEmails = (emails) => {
     const seen = new Set();
@@ -290,6 +300,13 @@ export default async function handler(req, res) {
     (email) => !to.some((recipient) => recipient.toLowerCase() === email.toLowerCase())
       && !bcc.some((recipient) => recipient.toLowerCase() === email.toLowerCase())
   );
+  const attachment = data.attachment && clean(data.attachment.content) && clean(data.attachment.filename)
+    ? [{
+        filename: clean(data.attachment.filename),
+        content: clean(data.attachment.content),
+        content_type: clean(data.attachment.contentType) || "application/octet-stream",
+      }]
+    : [];
   const from = process.env.BOOKING_FROM_EMAIL || "Pr1me Website <onboarding@resend.dev>";
   let timeout;
 
@@ -308,8 +325,8 @@ export default async function handler(req, res) {
         ...(cc.length ? { cc } : {}),
         ...(bcc.length ? { bcc } : {}),
         subject,
-        text: `New Pr1me service ${requestLabel.toLowerCase()}\n\n${summary}\n\nCC sent to: ${cc.length ? cc.join(", ") : "No form email provided"}\nBCC sent to: ${bcc.length ? bcc.join(", ") : "No BCC configured"}\n\nTerms and Conditions: ${clean(data.termsApproved) || (isBooking ? "Yes" : "No")}\nTerms File: https://pr1metutorialservices.vercel.app/Assets/Pr1me_TandC.pdf\n\nPlease review this ${requestLabel.toLowerCase()} and contact the guardian for confirmation.`,
-        html: buildEmailHtml(data, { requestLabel, subject, isBooking }).replace("</style>", `${tableCss}</style>`),
+        text: getPlainEmailText(data, { requestLabel, subject }),
+        ...(attachment.length ? { attachments: attachment } : {}),
       }),
       signal: controller.signal,
     });
@@ -340,6 +357,9 @@ export default async function handler(req, res) {
     return sendJson(res, 500, { error: timeoutMessage });
   }
 }
+
+
+
 
 
 

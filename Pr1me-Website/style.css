@@ -4655,3 +4655,15 @@ body:not(.pac-page) .service-link-row a {
     url("Assets/testimonial_bg.png") center / 72px auto repeat !important;
   border-color: rgba(155, 33, 28, 0.14) !important;
 }
+.booking-actions .button[disabled],
+.booking-actions .button.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  filter: grayscale(0.25);
+  box-shadow: none;
+}
+
+.booking-actions .button[disabled]:hover,
+.booking-actions .button.is-disabled:hover {
+  transform: none;
+}
