@@ -1,4 +1,4 @@
-function sendJson(res, status, body) {
+﻿function sendJson(res, status, body) {
   res.status(status);
   res.setHeader("Content-Type", "application/json");
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -48,6 +48,7 @@ function buildBookingSummary(data) {
     ["Preferred Schedule", data.preferredSchedule],
     ["Notes", data.notes],
     ["Uploaded File Name", data.uploadedFileName],
+    ["Terms Approved", data.termsApproved],
   ];
 
   return fields
@@ -55,6 +56,127 @@ function buildBookingSummary(data) {
     .map(([label, value]) => `${label}: ${clean(value)}`)
     .join("\n");
 }
+
+function buildRows(rows) {
+  return rows
+    .map(([label, value]) => {
+      const displayValue = clean(value) || "-";
+      return `
+        <tr>
+          <th>${escapeHtml(label)}</th>
+          <td>${escapeHtml(displayValue).replace(/\n/g, "<br>")}</td>
+        </tr>
+      `;
+    })
+    .join("");
+}
+
+function buildEmailHtml(data, meta) {
+  const submittedAt = new Date().toLocaleString("en-PH", {
+    timeZone: "Asia/Manila",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+  const termsApproved = clean(data.termsApproved).toLowerCase() === "yes" || meta.isBooking;
+  const termsLink = "https://pr1metutorialservices.vercel.app/Assets/Pr1me_TandC.pdf";
+
+  const studentRows = [
+    ["Student's Name", data.studentName],
+    ["Grade Level", data.gradeLevel],
+    ["School", data.school],
+    ["Age", data.age],
+  ];
+  const guardianRows = [
+    ["Guardian", data.guardianName],
+    ["Email", data.email],
+    ["Contact Number", data.contactNumber],
+  ];
+  const sessionRows = [
+    ["Service", data.service],
+    ["Request Type", data.requestType],
+    ["Package", data.package],
+    ["Mode", data.mode],
+    ["Tutoring Rate", data.tutoringRate],
+    ["Downpayment", meta.isBooking ? "PHP 2,000" : "Not required for inquiry"],
+  ];
+  const tutorRows = [
+    ["Preferred Tutor's Name and/or Subjects", data.preferredTutorSubjects],
+    ["Preferred Schedule", data.preferredSchedule],
+    ["Notes", data.notes],
+    ["Attachment / Additional Documents", data.uploadedFileName],
+  ];
+
+  return `
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      @media print {
+        .page-break { page-break-before: always; }
+      }
+    </style>
+  </head>
+  <body style="margin:0; padding:0; background:#f7eee8; font-family: Arial, Helvetica, sans-serif; color:#231815;">
+    <div style="max-width:820px; margin:0 auto; padding:24px;">
+      <section style="background:#fffaf6; border:1px solid #e9c9bd; border-radius:14px; overflow:hidden; box-shadow:0 10px 28px rgba(90,36,24,0.12);">
+        <div style="background:linear-gradient(90deg,#261512,#9b211c,#ff7618); color:#fff; padding:20px 24px;">
+          <p style="margin:0 0 4px; font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:#ffe1ce;">Pr1me Tutorial Services</p>
+          <h1 style="margin:0; font-size:28px; line-height:1.15;">${escapeHtml(meta.requestLabel)} Enrollment Form</h1>
+          <p style="margin:8px 0 0; font-size:13px; color:#ffeadd;">Submitted: ${escapeHtml(submittedAt)} | ${escapeHtml(meta.subject)}</p>
+        </div>
+
+        <div style="padding:22px 24px;">
+          <div style="display:inline-block; padding:8px 12px; border-radius:999px; background:#fff0e4; color:#9b211c; font-weight:800; font-size:13px; margin-bottom:16px;">Page 1: Enrollment Details</div>
+          <h2 style="margin:0 0 10px; color:#c62828; font-size:18px;">Student Information</h2>
+          <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse; margin-bottom:18px;">${buildRows(studentRows)}</table>
+
+          <h2 style="margin:0 0 10px; color:#c62828; font-size:18px;">Guardian / Contact Information</h2>
+          <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse; margin-bottom:18px;">${buildRows(guardianRows)}</table>
+
+          <h2 style="margin:0 0 10px; color:#c62828; font-size:18px;">Session and Payment Details</h2>
+          <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse; margin-bottom:18px;">${buildRows(sessionRows)}</table>
+
+          <h2 style="margin:0 0 10px; color:#c62828; font-size:18px;">Tutor, Schedule, and Notes</h2>
+          <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;">${buildRows(tutorRows)}</table>
+        </div>
+      </section>
+
+      <section class="page-break" style="margin-top:22px; background:#fffaf6; border:1px solid #e9c9bd; border-radius:14px; overflow:hidden; box-shadow:0 10px 28px rgba(90,36,24,0.12);">
+        <div style="background:linear-gradient(90deg,#261512,#9b211c,#ff7618); color:#fff; padding:18px 24px;">
+          <p style="margin:0 0 4px; font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:#ffe1ce;">Page 2</p>
+          <h2 style="margin:0; font-size:24px; line-height:1.15;">Terms and Conditions Approval</h2>
+        </div>
+        <div style="padding:22px 24px;">
+          <div style="border:2px solid ${termsApproved ? "#2f7d32" : "#c62828"}; background:${termsApproved ? "#edf7ed" : "#fff0e4"}; border-radius:12px; padding:16px; margin-bottom:16px;">
+            <p style="margin:0; font-size:17px; font-weight:900; color:${termsApproved ? "#2f7d32" : "#c62828"};">${termsApproved ? "Approved" : "Not marked as approved"}</p>
+            <p style="margin:8px 0 0; line-height:1.55;">The sender ${termsApproved ? "confirmed" : "has not confirmed"} that they viewed and approved Pr1me Tutorial Services' Terms and Conditions before submitting this ${escapeHtml(meta.requestLabel.toLowerCase())}.</p>
+          </div>
+
+          <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse; margin-bottom:18px;">
+            ${buildRows([
+              ["Terms Approval Checkbox", termsApproved ? "I have viewed and approved the Terms and Conditions." : "Not approved / not required for inquiry"],
+              ["Approval Recorded", termsApproved ? submittedAt : "-"],
+              ["Terms File", termsLink],
+            ])}
+          </table>
+
+          <p style="margin:0 0 10px; font-weight:800; color:#9b211c;">Official Terms and Conditions PDF</p>
+          <p style="margin:0; line-height:1.6;">View the full file here: <a href="${termsLink}" style="color:#c62828; font-weight:800;">${termsLink}</a></p>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>`;
+}
+
+const tableCss = `
+  th { width: 34%; text-align: left; vertical-align: top; padding: 10px 12px; border: 1px solid #eed4c8; background: #fff0e4; color: #5a2a20; font-size: 13px; }
+  td { text-align: left; vertical-align: top; padding: 10px 12px; border: 1px solid #eed4c8; background: #ffffff; color: #231815; font-size: 14px; line-height: 1.45; }
+`;
 
 export default async function handler(req, res) {
   if (req.method === "OPTIONS") {
@@ -96,10 +218,23 @@ export default async function handler(req, res) {
 
   const subject = `${studentName} - ${service}`;
   const summary = buildBookingSummary(data);
-  const to = (process.env.BOOKING_TO_EMAIL || "ljairamirez@gmail.com,glaurenciano@gmail.com,tutorialservices.pr1me@gmail.com")
-    .split(",")
-    .map((email) => email.trim())
-    .filter(Boolean);
+  const blockedRecipient = "glaurenciano@gmail.com";
+  const uniqueEmails = (emails) => {
+    const seen = new Set();
+    return emails
+      .map((email) => clean(email))
+      .filter(Boolean)
+      .filter((email) => {
+        const key = email.toLowerCase();
+        if (key === blockedRecipient || seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+  };
+  const to = uniqueEmails((process.env.BOOKING_TO_EMAIL || "ljairamirez@gmail.com,tutorialservices.pr1me@gmail.com").split(","));
+  const cc = uniqueEmails([data.email]).filter(
+    (email) => !to.some((recipient) => recipient.toLowerCase() === email.toLowerCase())
+  );
   const from = process.env.BOOKING_FROM_EMAIL || "Pr1me Website <onboarding@resend.dev>";
   let timeout;
 
@@ -115,16 +250,10 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         from,
         to,
+        ...(cc.length ? { cc } : {}),
         subject,
-        text: `New Pr1me service ${requestLabel.toLowerCase()}\n\n${summary}\n\nPlease review this ${requestLabel.toLowerCase()} and contact the guardian for confirmation.`,
-        html: `
-          <div style="font-family: Arial, sans-serif; color: #111; line-height: 1.5;">
-            <h2 style="margin: 0 0 8px; color: #c62828;">New Pr1me Service ${escapeHtml(requestLabel)}</h2>
-            <p style="margin: 0 0 16px;"><strong>${escapeHtml(subject)}</strong></p>
-            <pre style="white-space: pre-wrap; background: #fff0e4; border: 1px solid #ead2ca; border-radius: 8px; padding: 14px; font-family: Arial, sans-serif;">${escapeHtml(summary)}</pre>
-            <p style="margin-top: 16px; color: #4a403d;">Please review this ${escapeHtml(requestLabel.toLowerCase())} and contact the guardian for confirmation.</p>
-          </div>
-        `,
+        text: `New Pr1me service ${requestLabel.toLowerCase()}\n\n${summary}\n\nCopy sent to: ${cc.length ? cc.join(", ") : "No form email provided"}\n\nTerms and Conditions: ${clean(data.termsApproved) || (isBooking ? "Yes" : "No")}\nTerms File: https://pr1metutorialservices.vercel.app/Assets/Pr1me_TandC.pdf\n\nPlease review this ${requestLabel.toLowerCase()} and contact the guardian for confirmation.`,
+        html: buildEmailHtml(data, { requestLabel, subject, isBooking }).replace("</style>", `${tableCss}</style>`),
       }),
       signal: controller.signal,
     });
@@ -133,9 +262,12 @@ export default async function handler(req, res) {
     const result = await response.json().catch(() => ({}));
 
     if (!response.ok) {
-      return sendJson(res, response.status, {
-        error: result.message || result.error?.message || result.error || `${requestLabel} email could not be sent.`,
-      });
+      const providerError = result.message || result.error?.message || result.error || `${requestLabel} email could not be sent.`;
+      const publicError = /api\s*key|unauthorized|invalid/i.test(String(providerError))
+        ? "Email submission is not configured correctly yet. Please use Send via Email or Inquire on Facebook while Pr1me fixes the email sender."
+        : providerError;
+
+      return sendJson(res, response.status, { error: publicError });
     }
 
     return sendJson(res, 200, { ok: true, message: `${requestLabel} submitted successfully.` });

@@ -1,4 +1,4 @@
-const assetExtensions = [
+﻿const assetExtensions = [
   "png",
   "jpg",
   "JPG",
@@ -426,6 +426,7 @@ function getBookingPayload(form) {
     preferredSchedule: form.querySelector('[name="preferred-schedule"]')?.value.trim() || "",
     notes: form.querySelector('[name="notes"]')?.value.trim() || "",
     uploadedFileName: form.querySelector('[name="attachment"]')?.files?.[0]?.name || "",
+    termsApproved: form.querySelector('[name="terms-approved"]')?.checked ? "Yes" : "No",
   };
 }
 
@@ -656,7 +657,9 @@ if (emailBookingButton && bookingForm) {
     const summary = getBookingSummary(bookingForm);
     const subject = encodeURIComponent(updateBookingSubmissionTitle(bookingForm) || "Pr1me Tutorial Services Inquiry");
     const body = encodeURIComponent(summary);
-    window.location.href = `mailto:ljairamirez@gmail.com,glaurenciano@gmail.com,tutorialservices.pr1me@gmail.com?subject=${subject}&body=${body}`;
+    const copyEmail = bookingForm.querySelector('[name="email"]')?.value.trim();
+    const cc = copyEmail ? `&cc=${encodeURIComponent(copyEmail)}` : "";
+    window.location.href = `mailto:ljairamirez@gmail.com,tutorialservices.pr1me@gmail.com?subject=${subject}${cc}&body=${body}`;
   });
 }
 
@@ -983,6 +986,9 @@ function setupChatWidget() {
 }
 
 setupChatWidget();
+
+
+
 
 
 
