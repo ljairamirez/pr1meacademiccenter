@@ -444,6 +444,72 @@ function updateBookingSubmissionTitle(form) {
   return title;
 }
 
+
+const bookingDraftKey = "pr1me-booking-draft-v2";
+
+function getBookingDraftFields(form) {
+  return Array.from(form.querySelectorAll("input, select, textarea")).filter((field) => {
+    return field.name && field.type !== "file" && field.type !== "submit" && field.type !== "button";
+  });
+}
+
+function saveBookingDraft() {
+  if (!bookingForm || !window.localStorage) return;
+
+  const fields = {};
+  getBookingDraftFields(bookingForm).forEach((field) => {
+    fields[field.name] = field.type === "checkbox" ? field.checked : field.value;
+  });
+
+  try {
+    localStorage.setItem(bookingDraftKey, JSON.stringify({
+      mode: bookingModeState,
+      fields,
+      savedAt: Date.now(),
+    }));
+  } catch {
+    // Private browsing or full storage should not block the form.
+  }
+}
+
+function restoreBookingDraft() {
+  if (!bookingForm || !window.localStorage) return;
+
+  let draft;
+  try {
+    draft = JSON.parse(localStorage.getItem(bookingDraftKey) || "null");
+  } catch {
+    return;
+  }
+
+  if (!draft?.fields) return;
+
+  getBookingDraftFields(bookingForm).forEach((field) => {
+    if (!(field.name in draft.fields)) return;
+    if (field.type === "checkbox") {
+      field.checked = Boolean(draft.fields[field.name]);
+    } else {
+      field.value = draft.fields[field.name] || "";
+    }
+  });
+
+  const requestedMode = new URLSearchParams(window.location.search).get("mode");
+  if (!requestedMode && (draft.mode === "booking" || draft.mode === "inquiry")) {
+    setBookingMode(draft.mode);
+  }
+
+  updateBookingSubmissionTitle(bookingForm);
+  updateTutoringRate();
+}
+
+function clearBookingDraft() {
+  try {
+    localStorage.removeItem(bookingDraftKey);
+  } catch {
+    // Ignore storage cleanup failures.
+  }
+}
+
 openBookingButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
@@ -500,13 +566,16 @@ if (paymentModal) {
 
 if (bookingForm) {
   if (bookingPanel?.hidden) setBookingMode("inquiry");
+  restoreBookingDraft();
   bookingForm.addEventListener("input", () => {
     updateBookingSubmissionTitle(bookingForm);
     updateTutoringRate();
+    saveBookingDraft();
   });
   bookingForm.addEventListener("change", () => {
     updateBookingSubmissionTitle(bookingForm);
     updateTutoringRate();
+    saveBookingDraft();
   });
   bookingForm.addEventListener("submit", async (event) => {
     updateBookingSubmissionTitle(bookingForm);
@@ -531,25 +600,47 @@ if (bookingForm) {
       submitButton.textContent = "Submitting...";
     }
 
+    let timeout;
+
     try {
+      saveBookingDraft();
+      const controller = new AbortController();
+      timeout = window.setTimeout(() => controller.abort(), 20000);
       const response = await fetch(bookingEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(getBookingPayload(bookingForm)),
+        signal: controller.signal,
       });
-      const data = await response.json();
+      window.clearTimeout(timeout);
+      const responseText = await response.text();
+      let data = {};
+      try {
+        data = responseText ? JSON.parse(responseText) : {};
+      } catch {
+        data = {
+          error: responseText && responseText.length < 180
+            ? responseText
+            : "The server returned an unexpected response. Please try again, or use Send via Email / Inquire on Facebook.",
+        };
+      }
 
       if (!response.ok) {
         throw new Error(data.error || `${bookingModeState === "booking" ? "Booking" : "Inquiry"} could not be submitted.`);
       }
 
       alert(`${bookingModeState === "booking" ? "Booking" : "Inquiry"} submitted successfully.`);
+      clearBookingDraft();
       bookingForm.reset();
       setBookingMode(bookingModeState);
       updateBookingSubmissionTitle(bookingForm);
     } catch (error) {
-      alert(`${error.message}\n\nYou can still use Send via Email or Inquire on Facebook.`);
+      const message = error.name === "AbortError"
+        ? "Submission took too long. Your details are still saved on this browser. Please try again, or use Send via Email / Inquire on Facebook."
+        : `${error.message}\n\nYour details are still saved on this browser. You can try again, Send via Email, or Inquire on Facebook.`;
+      alert(message);
     } finally {
+      if (timeout) window.clearTimeout(timeout);
       if (submitButton) {
         submitButton.disabled = false;
         submitButton.textContent = originalText;
