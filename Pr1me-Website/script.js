@@ -388,7 +388,7 @@ function getBookingSummary(form) {
   const title = updateBookingSubmissionTitle(form);
   const requestType = form.querySelector('[name="request-type"]')?.value.trim() || "Inquiry";
   const detailsLabel = requestType.toLowerCase().includes("booking") ? "Booking Details:" : "Inquiry Details:";
-  const summaryLines = [title || "Pr1me Tutorial Services Inquiry", "", detailsLabel];
+  const summaryLines = [title || "PR1ME Tutorial Services Inquiry", "", detailsLabel];
   const fields = form.querySelectorAll("[data-summary-label]");
 
   fields.forEach((field) => {
@@ -689,7 +689,7 @@ if (emailBookingButton && bookingForm) {
     if (!bookingForm.reportValidity()) return;
 
     const summary = getBookingSummary(bookingForm);
-    const subject = encodeURIComponent(updateBookingSubmissionTitle(bookingForm) || "Pr1me Tutorial Services Inquiry");
+    const subject = encodeURIComponent(updateBookingSubmissionTitle(bookingForm) || "PR1ME Tutorial Services Inquiry");
     const body = encodeURIComponent(summary);
     const copyEmail = bookingForm.querySelector('[name="email"]')?.value.trim();
     const cc = copyEmail ? `&cc=${encodeURIComponent(copyEmail)}` : "";
@@ -753,7 +753,7 @@ const pr1meFaqAnswers = [
   {
     keywords: ["service", "offer", "offered", "tutorial", "class"],
     answer:
-      "Pr1me Tutorial Services offers One-on-One Tutorial, Regular Group Tutorial, Study-Buddy Tutoring, PSHS Regular Group Tutoring, Examination Reviews, Booster Program, and LEAP. Pr1me Academic Center (PAC) has its own page for Academic Center programs such as DOST-SEI Review.",
+      "PR1ME Tutorial Services offers One-on-One Tutorial, Regular Group Tutorial, Study-Buddy Tutoring, PSHS Regular Group Tutoring, Examination Reviews, Booster Program, and LEAP. Pr1me Academic Center (PAC) has its own page for Academic Center programs such as DOST-SEI Review.",
   },
   {
     keywords: ["program", "current", "promotion", "summer", "leap", "booster"],
@@ -800,7 +800,7 @@ const pr1meFaqAnswers = [
 const chatHistory = [
   {
     role: "assistant",
-    content: "Hi! Tap a question below or ask about Pr1me services, tutors, booking, or a school question.",
+    content: "Hi! Tap a question below or ask about PR1ME services, tutors, booking, or a school question.",
   },
 ];
 
@@ -1020,6 +1020,7 @@ function setupChatWidget() {
 }
 
 setupChatWidget();
+
 
 
 

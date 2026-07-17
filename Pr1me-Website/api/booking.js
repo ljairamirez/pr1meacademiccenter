@@ -186,7 +186,7 @@ function buildEmailHtml(data, meta) {
     <div style="max-width:820px; margin:0 auto; padding:24px;">
       <section style="background:#fffaf6; border:1px solid #e9c9bd; border-radius:14px; overflow:hidden; box-shadow:0 10px 28px rgba(90,36,24,0.12);">
         <div style="background:linear-gradient(90deg,#261512,#9b211c,#ff7618); color:#fff; padding:20px 24px;">
-          <p style="margin:0 0 4px; font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:#ffe1ce;">Pr1me Tutorial Services</p>
+          <p style="margin:0 0 4px; font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:#ffe1ce;">PR1ME Tutorial Services</p>
           <h1 style="margin:0; font-size:28px; line-height:1.15;">${escapeHtml(meta.requestLabel)} Enrollment Form</h1>
           <p style="margin:8px 0 0; font-size:13px; color:#ffeadd;">Submitted: ${escapeHtml(submittedAt)} | ${escapeHtml(meta.subject)}</p>
         </div>
@@ -215,7 +215,7 @@ function buildEmailHtml(data, meta) {
         <div style="padding:22px 24px;">
           <div style="border:2px solid ${termsApproved ? "#2f7d32" : "#c62828"}; background:${termsApproved ? "#edf7ed" : "#fff0e4"}; border-radius:12px; padding:16px; margin-bottom:16px;">
             <p style="margin:0; font-size:17px; font-weight:900; color:${termsApproved ? "#2f7d32" : "#c62828"};">${termsApproved ? "Approved" : "Not marked as approved"}</p>
-            <p style="margin:8px 0 0; line-height:1.55;">The sender ${termsApproved ? "confirmed" : "has not confirmed"} that they viewed and approved Pr1me Tutorial Services' Terms and Conditions before submitting this ${escapeHtml(meta.requestLabel.toLowerCase())}.</p>
+            <p style="margin:8px 0 0; line-height:1.55;">The sender ${termsApproved ? "confirmed" : "has not confirmed"} that they viewed and approved PR1ME Tutorial Services' Terms and Conditions before submitting this ${escapeHtml(meta.requestLabel.toLowerCase())}.</p>
           </div>
 
           <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse; margin-bottom:18px;">
@@ -307,7 +307,7 @@ export default async function handler(req, res) {
         content_type: clean(data.attachment.contentType) || "application/octet-stream",
       }]
     : [];
-  const from = process.env.BOOKING_FROM_EMAIL || "Pr1me Website <onboarding@resend.dev>";
+  const from = process.env.BOOKING_FROM_EMAIL || "PR1ME Website <onboarding@resend.dev>";
   let timeout;
 
   try {
@@ -358,6 +358,7 @@ export default async function handler(req, res) {
     return sendJson(res, 500, { error: timeoutMessage });
   }
 }
+
 
 
 
