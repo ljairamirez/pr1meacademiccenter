@@ -326,6 +326,7 @@ export default async function handler(req, res) {
         ...(bcc.length ? { bcc } : {}),
         subject,
         text: getPlainEmailText(data, { requestLabel, subject }),
+        html: buildEmailHtml(data, { requestLabel, subject, isBooking }).replace("</style>", `${tableCss}</style>`),
         ...(attachment.length ? { attachments: attachment } : {}),
       }),
       signal: controller.signal,
@@ -357,6 +358,7 @@ export default async function handler(req, res) {
     return sendJson(res, 500, { error: timeoutMessage });
   }
 }
+
 
 
 
