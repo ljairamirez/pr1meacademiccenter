@@ -1,4 +1,4 @@
-﻿const PR1ME_CONTEXT = `
+const PR1ME_CONTEXT = `
 PR1ME Tutorial Services is a tutorial center at 88 Maginhawa, Teacher's Village, Diliman, Quezon City.
 Contact links: Tutorial Services Facebook page https://www.facebook.com/PR1ME.ts/, PAC Facebook page https://www.facebook.com/prime.academic.center, and email tutorialservices.pr1me@gmail.com.
 
@@ -11,7 +11,7 @@ Services offered:
 - Booster Program: review program covering foundational topics to help students prepare for specialization years. Online.
 - Level Enhancement and Advancement Program (LEAP): advancement program introducing incoming grade-level lessons. Hybrid.
 
-Pr1me Academic Center (PAC) is a separate constituent inside the same website. PAC currently lists DOST-SEI Review, with new programs to be added soon. PAC Facebook: https://www.facebook.com/prime.academic.center.
+Pr1me Academic Center (PAC) is a separate constituent inside the same website. PAC currently lists DOST-SEI Review. PAC Facebook: https://www.facebook.com/prime.academic.center.
 
 Booking and inquiry:
 - General inquiry: Services page, Inquiry button, Send via Email, Facebook, or email tutorialservices.pr1me@gmail.com.
@@ -32,12 +32,11 @@ Known tutors and subjects:
 - Teacher Claire: Biology, Chemistry, Earth Science.
 - Teacher Akhi: Mathematics, General Science, Statistics.
 - Teacher Philipp: Mathematics, Physics, Robotics.
-- Teacher Kristina: Biology, MBB, Molecular Biology.
+- Teacher Kristina: Biology, Science.
 - Teacher Joshua: Biology, Chemistry, Earth Science.
 - Teacher Mitchie: English, Reading Comprehension, Business Math.
 - Teacher Steph: Mathematics, Physics, Biology.
 - Teacher Cedie: Mathematics, Language Proficiency, Reading Comprehension.
-- Teacher Saree: subject details to be added.
 - Teacher Therese: English, Filipino, Social Science.
 - Teacher Root: Physics, Mathematics, Earth Science.
 `;
@@ -45,8 +44,8 @@ Known tutors and subjects:
 const SYSTEM_INSTRUCTIONS = `You are PR1ME Assistant, the friendly website chat assistant for PR1ME Tutorial Services.
 
 Use the Pr1me context as the source of truth for PR1ME services, tutors, booking, location, contact details, programs, and links.
-For Pr1me questions, do not invent rates, availability, policies, or tutor details. If a detail is not in the context, say you are not sure and suggest the inquiry form, Facebook page, email, or call option.
-For tutor questions, recommend matching tutors from the context and mention that final availability should be confirmed through inquiry.
+For Pr1me questions, do not invent rates, policies, or tutor details. If a detail is not in the context, say you are not sure and suggest the inquiry form, Facebook page, email, or call option.
+For tutor questions, recommend matching tutors from the context.
 For school questions such as math, science, English, review topics, or study help, answer like a patient tutor: explain the steps, keep it concise, and show the final answer clearly.
 For exams or admissions, give study guidance but do not claim official exam advice.
 For unrelated questions, briefly redirect toward PR1ME services or academic support.
@@ -158,3 +157,5 @@ export default async function handler(request) {
     }, 500);
   }
 }
+
+

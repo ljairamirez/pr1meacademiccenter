@@ -1,4 +1,4 @@
-﻿const assetExtensions = [
+const assetExtensions = [
   "png",
   "jpg",
   "JPG",
@@ -729,24 +729,24 @@ const chatSuggestions = [
 ];
 
 const tutorDirectory = [
-  { name: "Teacher Gina", fullName: "Gina-Lyn Laurenciano-Calderon", subjects: ["Mathematics", "Statistics", "Review Support"], degree: "BS Mathematics and Science Teaching, Major in Mathematics", availability: "TBA" },
-  { name: "Teacher IMG", fullName: "Ian Mhar Gabriel D. Aguila", subjects: ["Biology", "Chemistry", "Earth Science"], degree: "BS Mathematics and Science Teaching", availability: "TBA" },
-  { name: "Teacher Dean", fullName: "Dean Angelo Calvendra Leyretana", subjects: ["Mathematics", "Physics", "SocSci"], degree: "BS Food Technology", availability: "MTWThFSat 9am-9pm" },
-  { name: "Teacher Jam B.", fullName: "Jamela Verna L. Beniga", subjects: ["Mathematics", "Physics", "Land Surveying"], degree: "BS Geodetic Engineering", availability: "Monday-Friday, 9am to 4pm" },
-  { name: "Teacher Lloyd", fullName: "Lloyd Ramirez", subjects: ["Mathematics", "Statistics", "Physics"], degree: "BS Geodetic Engineering", availability: "MTWThF - 9 AM - 4 PM" },
-  { name: "Teacher Nicko", fullName: "Nicko Gonzales", subjects: ["Algebra", "Geometry", "Statistics"], degree: "BS Business Administration", availability: "TBA" },
-  { name: "Teacher Triz", fullName: "Triz Darylle Agsunod", subjects: ["Chemistry", "Mathematics", "General Science"], degree: "BS Food Technology", availability: "MTWThF - 5PM - 10 PM, Sat - 9 AM - 5 PM" },
-  { name: "Teacher Claire", fullName: "Claire Devis", subjects: ["Biology", "Chemistry", "Earth Science"], degree: "B Secondary Education Major in Biology", availability: "MTWThF - 6 PM - 9 PM" },
-  { name: "Teacher Akhi", fullName: "Akhillis Dela Cruz Gochuico", subjects: ["Mathematics", "General Science", "Statistics"], degree: "BS Industrial Engineering", availability: "TBA" },
-  { name: "Teacher Philipp", fullName: "Philipp Gandeaz Dolor Jr.", subjects: ["Mathematics", "Physics", "Robotics"], degree: "BS Electronics Engineering", availability: "MTWThF 7am-10:30am & 6pm-10pm, Sat-Sun 8am-8pm" },
-  { name: "Teacher Kristina", fullName: "Kristina", subjects: ["Biology", "MBB", "Molecular Biology"], degree: "Details to be added soon", availability: "TBA" },
-  { name: "Teacher Joshua", fullName: "Joshua S. Dela Paz", subjects: ["Biology", "Chemistry", "Earth Science"], degree: "B Secondary Education Major in Biology", availability: "MTWThF 6pm - 9pm" },
-  { name: "Teacher Mitchie", fullName: "Mitchie Yance M. Sombria", subjects: ["English", "Reading Comprehension", "Business Math"], degree: "BS Business Economics", availability: "MTWThF 5pm - 8pm Sat 10 am - 6pm" },
-  { name: "Teacher Steph", fullName: "Stephanie U. Cruz", subjects: ["Mathematics", "Physics", "Biology"], degree: "B Secondary Education Major in Mathematics Minor in Science", availability: "Tuesday and Thursday (5-9 pm), Saturday and Sunday (1-7 pm)" },
-  { name: "Teacher Cedie", fullName: "Sean Cedrick J. Gavilan", subjects: ["Mathematics", "Language Proficiency", "Reading Comprehension"], degree: "BS Computer Engineering", availability: "MTWThF (7am - 10am) & (7pm - 10pm)" },
-  { name: "Teacher Saree", fullName: "Saree Evidente", subjects: ["Subject TBA"], degree: "Details to be added soon", availability: "TBA" },
-  { name: "Teacher Therese", fullName: "Vince Therese Turqueza", subjects: ["English", "Filipino", "Social Science"], degree: "III - B Library and Information Science", availability: "Tuesday to Saturday, 10AM - 8PM" },
-  { name: "Teacher Root", fullName: "Reuter Dave Aquino", subjects: ["Physics", "Mathematics", "Earth Science"], degree: "B Secondary Education Major in Physics", availability: "MTWThF 6 pm - 9 pm" },
+  { name: "Teacher Gina", fullName: "Gina-Lyn Laurenciano-Calderon", subjects: ["Mathematics", "Statistics", "Review Support"], degree: "BS Mathematics and Science Teaching, Major in Mathematics" },
+  { name: "Teacher IMG", fullName: "Ian Mhar Gabriel D. Aguila", subjects: ["Biology", "Chemistry", "Earth Science"], degree: "BS Mathematics and Science Teaching" },
+  { name: "Teacher Dean", fullName: "Dean Angelo Calvendra Leyretana", subjects: ["Mathematics", "Physics", "SocSci"], degree: "BS Food Technology" },
+  { name: "Teacher Jam B.", fullName: "Jamela Verna L. Beniga", subjects: ["Mathematics", "Physics", "Land Surveying"], degree: "BS Geodetic Engineering" },
+  { name: "Teacher Lloyd", fullName: "Lloyd Ramirez", subjects: ["Mathematics", "Statistics", "Physics"], degree: "BS Geodetic Engineering" },
+  { name: "Teacher Nicko", fullName: "Nicko Gonzales", subjects: ["Algebra", "Geometry", "Statistics"], degree: "BS Business Administration" },
+  { name: "Teacher Triz", fullName: "Triz Darylle Agsunod", subjects: ["Chemistry", "Mathematics", "General Science"], degree: "BS Food Technology" },
+  { name: "Teacher Claire", fullName: "Claire Devis", subjects: ["Biology", "Chemistry", "Earth Science"], degree: "B Secondary Education Major in Biology" },
+  { name: "Teacher Akhi", fullName: "Akhillis Dela Cruz Gochuico", subjects: ["Mathematics", "General Science", "Statistics"], degree: "BS Industrial Engineering" },
+  { name: "Teacher Philipp", fullName: "Philipp Gandeaz Dolor Jr.", subjects: ["Mathematics", "Physics", "Robotics"], degree: "BS Electronics Engineering" },
+  { name: "Teacher Kristina", fullName: "Kristina", subjects: ["Biology", "Science"], degree: "" },
+  { name: "Teacher Joshua", fullName: "Joshua S. Dela Paz", subjects: ["Biology", "Chemistry", "Earth Science"], degree: "B Secondary Education Major in Biology" },
+  { name: "Teacher Mitchie", fullName: "Mitchie Yance M. Sombria", subjects: ["English", "Reading Comprehension", "Business Math"], degree: "BS Business Economics" },
+  { name: "Teacher Steph", fullName: "Stephanie U. Cruz", subjects: ["Mathematics", "Physics", "Biology"], degree: "B Secondary Education Major in Mathematics Minor in Science" },
+  { name: "Teacher Cedie", fullName: "Sean Cedrick J. Gavilan", subjects: ["Mathematics", "Language Proficiency", "Reading Comprehension"], degree: "BS Computer Engineering" },
+  { name: "Teacher Saree", fullName: "Saree Evidente", subjects: [], degree: "" },
+  { name: "Teacher Therese", fullName: "Vince Therese Turqueza", subjects: ["English", "Filipino", "Social Science"], degree: "III - B Library and Information Science" },
+  { name: "Teacher Root", fullName: "Reuter Dave Aquino", subjects: ["Physics", "Mathematics", "Earth Science"], degree: "B Secondary Education Major in Physics" },
 ];
 
 const pr1meFaqAnswers = [
@@ -758,7 +758,7 @@ const pr1meFaqAnswers = [
   {
     keywords: ["program", "current", "promotion", "summer", "leap", "booster"],
     answer:
-      "Current programs shown on the tutorial site include PSHS Regular Group Tutoring, Study-Buddy Tutoring, and One-on-One Tutoring. PAC programs include DOST-SEI Review, with more Academic Center programs to be added soon.",
+      "Current programs shown on the tutorial site include PSHS Regular Group Tutoring, Study-Buddy Tutoring, and One-on-One Tutoring. PAC programs include DOST-SEI Review.",
   },
   {
     keywords: ["book", "booking", "reserve", "schedule", "avail", "form"],
@@ -853,7 +853,7 @@ function getTutorChatReply(normalized) {
 
   const specificTutor = findTutorByQuestion(normalized);
   if (specificTutor) {
-    return `${specificTutor.name} (${specificTutor.fullName}) handles ${specificTutor.subjects.join(", ")}. Degree/program: ${specificTutor.degree}. Availability: ${specificTutor.availability}.`;
+    return `${specificTutor.name} (${specificTutor.fullName})${specificTutor.subjects.length ? ` handles ${specificTutor.subjects.join(", ")}` : " has details being finalized"}${specificTutor.degree ? `. Degree/program: ${specificTutor.degree}` : ""}.`;
   }
 
   const subjectTutors = findTutorsBySubject(normalized);
@@ -1020,6 +1020,9 @@ function setupChatWidget() {
 }
 
 setupChatWidget();
+
+
+
 
 
 
