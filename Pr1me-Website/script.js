@@ -853,7 +853,7 @@ function getTutorChatReply(normalized) {
 
   const specificTutor = findTutorByQuestion(normalized);
   if (specificTutor) {
-    return `${specificTutor.name} (${specificTutor.fullName})${specificTutor.subjects.length ? ` handles ${specificTutor.subjects.join(", ")}` : " has details being finalized"}${specificTutor.degree ? `. Degree/program: ${specificTutor.degree}` : ""}.`;
+    return `${specificTutor.name} (${specificTutor.fullName})${specificTutor.subjects.length ? ` handles ${specificTutor.subjects.join(", ")}` : " is listed in the PR1ME tutor directory"}${specificTutor.degree ? `. Degree/program: ${specificTutor.degree}` : ""}.`;
   }
 
   const subjectTutors = findTutorsBySubject(normalized);
@@ -1020,6 +1020,7 @@ function setupChatWidget() {
 }
 
 setupChatWidget();
+
 
 
 
