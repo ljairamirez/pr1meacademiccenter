@@ -757,7 +757,7 @@ const pr1meFaqAnswers = [
   {
     keywords: ["program", "current", "promotion", "promo", "katipunan", "branch", "summer", "leap", "booster"],
     answer:
-      "PR1ME's Katipunan Branch opening promo runs from August 25 to September 5, 2026: 15% off your first tutorial package, plus a Bring-a-Friend promo where both enrolled students receive one free tutorial hour. These promos apply to face-to-face One-on-One and Study Buddy tutorial packages at Unit 409, 4th Floor, Crowne One Condominium, Esteban Abada Street, Loyola Heights, Quezon City. Terms and conditions apply.",
+      "PR1ME's Katipunan Branch opening promo runs from August 25 to September 5, 2026: 15% off your first face-to-face One-on-One or Study Buddy package, plus one free tutorial hour for both students when a referred friend enrolls. Visit Unit 409, Crowne One Condominium, Esteban Abada Street, Loyola Heights, Quezon City. Terms and conditions apply.",
   },
   {
     keywords: ["book", "booking", "reserve", "schedule", "avail", "form"],

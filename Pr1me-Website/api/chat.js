@@ -4,10 +4,9 @@ Contact links: Tutorial Services Facebook page https://www.facebook.com/PR1ME.ts
 
 Current promotion:
 - Katipunan Branch opening promo runs from August 25 to September 5, 2026.
-- 15% off the first tutorial package for enrollees during the promo period.
-- Bring-a-Friend Promo: refer a friend who successfully enrolls, and both students receive one free tutorial hour added to their packages.
-- Exclusive to face-to-face One-on-One and Study Buddy tutorial packages at the Katipunan Branch.
-- Katipunan Branch address: Unit 409, 4th Floor, Crowne One Condominium, Esteban Abada Street, Loyola Heights, Quezon City (same building as Miss Wa).
+- 15% off the first face-to-face One-on-One or Study Buddy package.
+- Bring-a-Friend Promo: when a referred friend enrolls, both students receive one free tutorial hour.
+- Katipunan Branch address: Unit 409, Crowne One Condominium, Esteban Abada Street, Loyola Heights, Quezon City.
 - Terms and conditions apply.
 
 Services offered:
