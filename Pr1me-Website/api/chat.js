@@ -2,6 +2,14 @@ const PR1ME_CONTEXT = `
 PR1ME Tutorial Services is a tutorial center at 88 Maginhawa, Teacher's Village, Diliman, Quezon City.
 Contact links: Tutorial Services Facebook page https://www.facebook.com/PR1ME.ts/, PAC Facebook page https://www.facebook.com/prime.academic.center, and email tutorialservices.pr1me@gmail.com.
 
+Current promotion:
+- Katipunan Branch opening promo runs from August 25 to September 5, 2026.
+- 15% off the first tutorial package for enrollees during the promo period.
+- Bring-a-Friend Promo: refer a friend who successfully enrolls, and both students receive one free tutorial hour added to their packages.
+- Exclusive to face-to-face One-on-One and Study Buddy tutorial packages at the Katipunan Branch.
+- Katipunan Branch address: Unit 409, 4th Floor, Crowne One Condominium, Esteban Abada Street, Loyola Heights, Quezon City (same building as Miss Wa).
+- Terms and conditions apply.
+
 Services offered:
 - One-on-One Tutorial: personalized sessions for homework help, assessments, advance lessons, and guided practice. Online, Face-to-Face, or Hybrid.
 - Study-Buddy Tutoring: pair or two-student sessions for selected subjects. Online, Face-to-Face, or Hybrid.
@@ -35,8 +43,8 @@ Known tutors and subjects:
 - Teacher Kristina: Biology, Science.
 - Teacher Joshua: Biology, Chemistry, Earth Science.
 - Teacher Mitchie: English, Reading Comprehension, Business Math.
-- Teacher Steph: Mathematics, Physics, Biology.
 - Teacher Cedie: Mathematics, Language Proficiency, Reading Comprehension.
+- Teacher Saree: Chemistry, Biology.
 - Teacher Therese: English, Filipino, Social Science.
 - Teacher Root: Physics, Mathematics, Earth Science.
 `;

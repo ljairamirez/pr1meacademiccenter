@@ -742,9 +742,8 @@ const tutorDirectory = [
   { name: "Teacher Kristina", fullName: "Kristina", subjects: ["Biology", "Science"], degree: "" },
   { name: "Teacher Joshua", fullName: "Joshua S. Dela Paz", subjects: ["Biology", "Chemistry", "Earth Science"], degree: "B Secondary Education Major in Biology" },
   { name: "Teacher Mitchie", fullName: "Mitchie Yance M. Sombria", subjects: ["English", "Reading Comprehension", "Business Math"], degree: "BS Business Economics" },
-  { name: "Teacher Steph", fullName: "Stephanie U. Cruz", subjects: ["Mathematics", "Physics", "Biology"], degree: "B Secondary Education Major in Mathematics Minor in Science" },
   { name: "Teacher Cedie", fullName: "Sean Cedrick J. Gavilan", subjects: ["Mathematics", "Language Proficiency", "Reading Comprehension"], degree: "BS Computer Engineering" },
-  { name: "Teacher Saree", fullName: "Saree Evidente", subjects: [], degree: "" },
+  { name: "Teacher Saree", fullName: "Saree Evidente", subjects: ["Chemistry", "Biology"], degree: "BS Pharmaceutical Sciences" },
   { name: "Teacher Therese", fullName: "Vince Therese Turqueza", subjects: ["English", "Filipino", "Social Science"], degree: "III - B Library and Information Science" },
   { name: "Teacher Root", fullName: "Reuter Dave Aquino", subjects: ["Physics", "Mathematics", "Earth Science"], degree: "B Secondary Education Major in Physics" },
 ];
@@ -756,9 +755,9 @@ const pr1meFaqAnswers = [
       "PR1ME Tutorial Services offers One-on-One Tutorial, Regular Group Tutorial, Study-Buddy Tutoring, PSHS Regular Group Tutoring, Examination Reviews, Booster Program, and LEAP. Pr1me Academic Center (PAC) has its own page for Academic Center programs such as DOST-SEI Review.",
   },
   {
-    keywords: ["program", "current", "promotion", "summer", "leap", "booster"],
+    keywords: ["program", "current", "promotion", "promo", "katipunan", "branch", "summer", "leap", "booster"],
     answer:
-      "Current programs shown on the tutorial site include PSHS Regular Group Tutoring, Study-Buddy Tutoring, and One-on-One Tutoring. PAC programs include DOST-SEI Review.",
+      "PR1ME's Katipunan Branch opening promo runs from August 25 to September 5, 2026: 15% off your first tutorial package, plus a Bring-a-Friend promo where both enrolled students receive one free tutorial hour. These promos apply to face-to-face One-on-One and Study Buddy tutorial packages at Unit 409, 4th Floor, Crowne One Condominium, Esteban Abada Street, Loyola Heights, Quezon City. Terms and conditions apply.",
   },
   {
     keywords: ["book", "booking", "reserve", "schedule", "avail", "form"],
