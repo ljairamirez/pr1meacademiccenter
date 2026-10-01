@@ -745,6 +745,7 @@ const tutorDirectory = [
   { name: "Teacher Mitchie", fullName: "Mitchie Yance M. Sombria", subjects: ["English", "Reading Comprehension", "Business Math"], degree: "BS Business Economics" },
   { name: "Teacher Cedie", fullName: "Sean Cedrick J. Gavilan", subjects: ["Mathematics", "Language Proficiency", "Reading Comprehension"], degree: "BS Computer Engineering" },
   { name: "Teacher Saree", fullName: "Saree Evidente", subjects: ["Chemistry", "Biology"], degree: "BS Pharmaceutical Sciences" },
+  { name: "Teacher Therese", fullName: "Vince Therese Turqueza", subjects: ["English", "Filipino", "Social Science"], degree: "III - B Library and Information Science" },
   { name: "Teacher Ray", fullName: "Christian Ray G. Rausa", subjects: ["Math", "Physics", "Surveying"], degree: "BS Geodetic Engineering" },
   { name: "Teacher Jam", fullName: "Jam B. Fernandez", subjects: ["Algebra", "Calculus", "Geometry", "Math", "Science"], degree: "III-BS Applied Physics" },
   { name: "Teacher Joseph", fullName: "Joseph Benedict S. Inoferio", subjects: ["Algebra", "Geometry", "Science"], degree: "BS Computer Engineering" },

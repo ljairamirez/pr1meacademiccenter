@@ -37,6 +37,7 @@ Known tutors and subjects:
 - Teacher Mitchie: English, Reading Comprehension, Business Math.
 - Teacher Cedie: Mathematics, Language Proficiency, Reading Comprehension.
 - Teacher Saree: Chemistry, Biology.
+- Teacher Therese: English, Filipino, Social Science.
 - Teacher Ray: Math, Physics, Surveying.
 - Teacher Jam: Algebra, Calculus, Geometry, Math, Science.
 - Teacher Joseph: Algebra, Geometry, Science.
