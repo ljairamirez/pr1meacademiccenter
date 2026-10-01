@@ -428,6 +428,7 @@ async function getBookingPayload(form) {
     age: form.querySelector('[name="age"]')?.value.trim() || "",
     email: form.querySelector('[name="email"]')?.value.trim() || "",
     contactNumber: form.querySelector('[name="contact-number"]')?.value.trim() || "",
+    facebookViberContact: form.querySelector('[name="facebook-viber-contact"]')?.value.trim() || "",
     service: form.querySelector('[name="service"]')?.value.trim() || "",
     requestType: form.querySelector('[name="request-type"]')?.value.trim() || "Inquiry",
     package: form.querySelector('[name="package"]')?.value.trim() || "",
@@ -768,7 +769,7 @@ const pr1meFaqAnswers = [
   {
     keywords: ["program", "current", "promotion", "promo", "katipunan", "branch", "summer", "leap", "booster"],
     answer:
-      "PR1ME's Katipunan Branch opening promo runs from August 25 to September 5, 2026: 15% off your first face-to-face One-on-One or Study Buddy package, plus one free tutorial hour for both students when a referred friend enrolls. Visit Unit 409, Crowne One Condominium, Esteban Abada Street, Loyola Heights, Quezon City. Terms and conditions apply.",
+      "Current programs shown on the tutorial site include PSHS Regular Group Tutoring, Study-Buddy Tutoring, and One-on-One Tutoring. PR1ME also has a Katipunan Branch at Unit 409, Crowne One Condominium, Esteban Abada Street, Loyola Heights, Quezon City.",
   },
   {
     keywords: ["book", "booking", "reserve", "schedule", "avail", "form"],
@@ -778,7 +779,7 @@ const pr1meFaqAnswers = [
   {
     keywords: ["where", "located", "location", "address", "map", "maps", "maginhawa"],
     answer:
-      "Pr1me is located at 88 Maginhawa, Teacher's Village, Diliman, Quezon City. You can click the map or the footer address to open it in Google Maps.",
+      "PR1ME has a Maginhawa Branch at 88 Maginhawa, Teacher's Village, Diliman, Quezon City, and a Katipunan Branch at Unit 409, Crowne One Condominium, Esteban Abada Street, Loyola Heights, Quezon City.",
   },
   {
     keywords: ["contact", "email", "gmail", "phone", "call", "number"],

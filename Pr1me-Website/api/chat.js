@@ -1,13 +1,6 @@
 const PR1ME_CONTEXT = `
-PR1ME Tutorial Services is a tutorial center at 88 Maginhawa, Teacher's Village, Diliman, Quezon City.
+PR1ME Tutorial Services has a Maginhawa Branch at 88 Maginhawa, Teacher's Village, Diliman, Quezon City, and a Katipunan Branch at Unit 409, Crowne One Condominium, Esteban Abada Street, Loyola Heights, Quezon City.
 Contact links: Tutorial Services Facebook page https://www.facebook.com/PR1ME.ts/, PAC Facebook page https://www.facebook.com/prime.academic.center, and email tutorialservices.pr1me@gmail.com.
-
-Current promotion:
-- Katipunan Branch opening promo runs from August 25 to September 5, 2026.
-- 15% off the first face-to-face One-on-One or Study Buddy package.
-- Bring-a-Friend Promo: when a referred friend enrolls, both students receive one free tutorial hour.
-- Katipunan Branch address: Unit 409, Crowne One Condominium, Esteban Abada Street, Loyola Heights, Quezon City.
-- Terms and conditions apply.
 
 Services offered:
 - One-on-One Tutorial: personalized sessions for homework help, assessments, advance lessons, and guided practice. Online, Face-to-Face, or Hybrid.
